@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Kubernetes存储 | CodeVault文档站</title>
+    <meta name="generator" content="VuePress 1.9.2">
+    <link rel="icon" href="/CodeVault/img/Aj.svg">
+    <meta name="description" content="CodeVault一个记录云计算、云原生、Java开发的文档站。">
+    <meta name="keywords" content="vuepress,theme,blog,vdoing">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/CodeVault/assets/css/0.styles.bcdd6f38.css" as="style"><link rel="preload" href="/CodeVault/assets/js/app.ef278985.js" as="script"><link rel="preload" href="/CodeVault/assets/js/2.f96441c8.js" as="script"><link rel="preload" href="/CodeVault/assets/js/148.24a7cd95.js" as="script"><link rel="prefetch" href="/CodeVault/assets/js/10.0b981dbd.js"><link rel="prefetch" href="/CodeVault/assets/js/100.5c06c78f.js"><link rel="prefetch" href="/CodeVault/assets/js/101.88d67c9c.js"><link rel="prefetch" href="/CodeVault/assets/js/102.70928850.js"><link rel="prefetch" href="/CodeVault/assets/js/103.ef636770.js"><link rel="prefetch" href="/CodeVault/assets/js/104.c1927b63.js"><link rel="prefetch" href="/CodeVault/assets/js/105.85c8a7cd.js"><link rel="prefetch" href="/CodeVault/assets/js/106.fb2e66ea.js"><link rel="prefetch" href="/CodeVault/assets/js/107.0f35bf63.js"><link rel="prefetch" href="/CodeVault/assets/js/108.fccb735c.js"><link rel="prefetch" href="/CodeVault/assets/js/109.682036f0.js"><link rel="prefetch" href="/CodeVault/assets/js/11.ac4d24fe.js"><link rel="prefetch" href="/CodeVault/assets/js/110.b7f8edea.js"><link rel="prefetch" href="/CodeVault/assets/js/111.fd94666b.js"><link rel="prefetch" href="/CodeVault/assets/js/112.a07708f0.js"><link rel="prefetch" href="/CodeVault/assets/js/113.63efff87.js"><link rel="prefetch" href="/CodeVault/assets/js/114.ab1099fa.js"><link rel="prefetch" href="/CodeVault/assets/js/115.f5fe6b28.js"><link rel="prefetch" href="/CodeVault/assets/js/116.6ce08e8e.js"><link rel="prefetch" href="/CodeVault/assets/js/117.48dbb04e.js"><link rel="prefetch" href="/CodeVault/assets/js/118.5b909be0.js"><link rel="prefetch" href="/CodeVault/assets/js/119.8f6e0bf7.js"><link rel="prefetch" href="/CodeVault/assets/js/12.c1e5feb4.js"><link rel="prefetch" href="/CodeVault/assets/js/120.21cc7ba5.js"><link rel="prefetch" href="/CodeVault/assets/js/121.04134de2.js"><link rel="prefetch" href="/CodeVault/assets/js/122.31567951.js"><link rel="prefetch" href="/CodeVault/assets/js/123.002f9bee.js"><link rel="prefetch" href="/CodeVault/assets/js/124.e99e860a.js"><link rel="prefetch" href="/CodeVault/assets/js/125.72c926b3.js"><link rel="prefetch" href="/CodeVault/assets/js/126.01a5e87f.js"><link rel="prefetch" href="/CodeVault/assets/js/127.1956ebe6.js"><link rel="prefetch" href="/CodeVault/assets/js/128.d65996f5.js"><link rel="prefetch" href="/CodeVault/assets/js/129.67eabc56.js"><link rel="prefetch" href="/CodeVault/assets/js/13.13f84e24.js"><link rel="prefetch" href="/CodeVault/assets/js/130.634c4ce3.js"><link rel="prefetch" href="/CodeVault/assets/js/131.a418f195.js"><link rel="prefetch" href="/CodeVault/assets/js/132.ea662f19.js"><link rel="prefetch" href="/CodeVault/assets/js/133.63b2b38b.js"><link rel="prefetch" href="/CodeVault/assets/js/134.0cd9f3da.js"><link rel="prefetch" href="/CodeVault/assets/js/135.4e8913a1.js"><link rel="prefetch" href="/CodeVault/assets/js/136.53ad8182.js"><link rel="prefetch" href="/CodeVault/assets/js/137.8d8f6ff4.js"><link rel="prefetch" href="/CodeVault/assets/js/138.1e5627de.js"><link rel="prefetch" href="/CodeVault/assets/js/139.4c335178.js"><link rel="prefetch" href="/CodeVault/assets/js/14.92742bc3.js"><link rel="prefetch" href="/CodeVault/assets/js/140.ad32a483.js"><link rel="prefetch" href="/CodeVault/assets/js/141.509650db.js"><link rel="prefetch" href="/CodeVault/assets/js/142.8a4692a4.js"><link rel="prefetch" href="/CodeVault/assets/js/143.4226943d.js"><link rel="prefetch" href="/CodeVault/assets/js/144.a04016d3.js"><link rel="prefetch" href="/CodeVault/assets/js/145.55b32ea3.js"><link rel="prefetch" href="/CodeVault/assets/js/146.d78a1fa5.js"><link rel="prefetch" href="/CodeVault/assets/js/147.c48fa78d.js"><link rel="prefetch" href="/CodeVault/assets/js/149.a74e35f1.js"><link rel="prefetch" href="/CodeVault/assets/js/15.6953f44b.js"><link rel="prefetch" href="/CodeVault/assets/js/150.7f27817b.js"><link rel="prefetch" href="/CodeVault/assets/js/151.6445d326.js"><link rel="prefetch" href="/CodeVault/assets/js/152.eadc171d.js"><link rel="prefetch" href="/CodeVault/assets/js/153.2da9c7f8.js"><link rel="prefetch" href="/CodeVault/assets/js/154.a3546076.js"><link rel="prefetch" href="/CodeVault/assets/js/155.351a616f.js"><link rel="prefetch" href="/CodeVault/assets/js/156.e6bbf3b3.js"><link rel="prefetch" href="/CodeVault/assets/js/157.ee152deb.js"><link rel="prefetch" href="/CodeVault/assets/js/158.076e0f8c.js"><link rel="prefetch" href="/CodeVault/assets/js/159.9ad1744e.js"><link rel="prefetch" href="/CodeVault/assets/js/16.df859e45.js"><link rel="prefetch" href="/CodeVault/assets/js/160.c5beea39.js"><link rel="prefetch" href="/CodeVault/assets/js/161.0cf956e1.js"><link rel="prefetch" href="/CodeVault/assets/js/162.c58e81e1.js"><link rel="prefetch" href="/CodeVault/assets/js/163.63d65593.js"><link rel="prefetch" href="/CodeVault/assets/js/164.9626ab8a.js"><link rel="prefetch" href="/CodeVault/assets/js/165.fc09035b.js"><link rel="prefetch" href="/CodeVault/assets/js/166.b38be38b.js"><link rel="prefetch" href="/CodeVault/assets/js/167.8f5417ed.js"><link rel="prefetch" href="/CodeVault/assets/js/168.d636e649.js"><link rel="prefetch" href="/CodeVault/assets/js/169.dd84c459.js"><link rel="prefetch" href="/CodeVault/assets/js/17.a2971fe6.js"><link rel="prefetch" href="/CodeVault/assets/js/170.a488616f.js"><link rel="prefetch" href="/CodeVault/assets/js/171.a7896a98.js"><link rel="prefetch" href="/CodeVault/assets/js/172.90b58f0e.js"><link rel="prefetch" href="/CodeVault/assets/js/173.ce66d68a.js"><link rel="prefetch" href="/CodeVault/assets/js/174.d0a94b6a.js"><link rel="prefetch" href="/CodeVault/assets/js/175.87ea7df7.js"><link rel="prefetch" href="/CodeVault/assets/js/176.67abf34b.js"><link rel="prefetch" href="/CodeVault/assets/js/177.3b2acda5.js"><link rel="prefetch" href="/CodeVault/assets/js/178.5fe697a5.js"><link rel="prefetch" href="/CodeVault/assets/js/179.57349e36.js"><link rel="prefetch" href="/CodeVault/assets/js/18.45b06c71.js"><link rel="prefetch" href="/CodeVault/assets/js/180.a8b6136e.js"><link rel="prefetch" href="/CodeVault/assets/js/181.c96cb1ac.js"><link rel="prefetch" href="/CodeVault/assets/js/182.e13a2ed6.js"><link rel="prefetch" href="/CodeVault/assets/js/183.4982d955.js"><link rel="prefetch" href="/CodeVault/assets/js/184.123e3912.js"><link rel="prefetch" href="/CodeVault/assets/js/185.c1db2bfa.js"><link rel="prefetch" href="/CodeVault/assets/js/186.bff6dc40.js"><link rel="prefetch" href="/CodeVault/assets/js/187.3e10e06d.js"><link rel="prefetch" href="/CodeVault/assets/js/188.53f01570.js"><link rel="prefetch" href="/CodeVault/assets/js/189.53c9b973.js"><link rel="prefetch" href="/CodeVault/assets/js/19.21381c2f.js"><link rel="prefetch" href="/CodeVault/assets/js/190.f9e298a3.js"><link rel="prefetch" href="/CodeVault/assets/js/191.7055ec43.js"><link rel="prefetch" href="/CodeVault/assets/js/192.6083d608.js"><link rel="prefetch" href="/CodeVault/assets/js/193.72e5d099.js"><link rel="prefetch" href="/CodeVault/assets/js/194.cb4c2f87.js"><link rel="prefetch" href="/CodeVault/assets/js/195.add61432.js"><link rel="prefetch" href="/CodeVault/assets/js/196.cafb716f.js"><link rel="prefetch" href="/CodeVault/assets/js/197.29ad1cb1.js"><link rel="prefetch" href="/CodeVault/assets/js/198.1ca9886c.js"><link rel="prefetch" href="/CodeVault/assets/js/199.28f7095d.js"><link rel="prefetch" href="/CodeVault/assets/js/20.fe478246.js"><link rel="prefetch" href="/CodeVault/assets/js/200.cdd91d66.js"><link rel="prefetch" href="/CodeVault/assets/js/201.568571d0.js"><link rel="prefetch" href="/CodeVault/assets/js/202.0b55d1cd.js"><link rel="prefetch" href="/CodeVault/assets/js/203.c9d7036e.js"><link rel="prefetch" href="/CodeVault/assets/js/204.f877fa44.js"><link rel="prefetch" href="/CodeVault/assets/js/205.f7dcea25.js"><link rel="prefetch" href="/CodeVault/assets/js/206.266f6bb0.js"><link rel="prefetch" href="/CodeVault/assets/js/207.962cdf0e.js"><link rel="prefetch" href="/CodeVault/assets/js/208.dcbb7fb9.js"><link rel="prefetch" href="/CodeVault/assets/js/209.89cb12fb.js"><link rel="prefetch" href="/CodeVault/assets/js/21.1a17ddc5.js"><link rel="prefetch" href="/CodeVault/assets/js/210.442ced55.js"><link rel="prefetch" href="/CodeVault/assets/js/211.6d14fe33.js"><link rel="prefetch" href="/CodeVault/assets/js/212.65a1883d.js"><link rel="prefetch" href="/CodeVault/assets/js/213.21351702.js"><link rel="prefetch" href="/CodeVault/assets/js/214.bd781706.js"><link rel="prefetch" href="/CodeVault/assets/js/215.f30b644c.js"><link rel="prefetch" href="/CodeVault/assets/js/216.587501ff.js"><link rel="prefetch" href="/CodeVault/assets/js/217.8db2123f.js"><link rel="prefetch" href="/CodeVault/assets/js/218.aa6b1af6.js"><link rel="prefetch" href="/CodeVault/assets/js/219.2b27640b.js"><link rel="prefetch" href="/CodeVault/assets/js/22.7652d0d6.js"><link rel="prefetch" href="/CodeVault/assets/js/220.eafe6218.js"><link rel="prefetch" href="/CodeVault/assets/js/221.ab153f73.js"><link rel="prefetch" href="/CodeVault/assets/js/222.4f7df33b.js"><link rel="prefetch" href="/CodeVault/assets/js/223.6f5b1e03.js"><link rel="prefetch" href="/CodeVault/assets/js/224.6bed6414.js"><link rel="prefetch" href="/CodeVault/assets/js/225.03a64323.js"><link rel="prefetch" href="/CodeVault/assets/js/226.2db9dc4b.js"><link rel="prefetch" href="/CodeVault/assets/js/227.6e01bc51.js"><link rel="prefetch" href="/CodeVault/assets/js/228.d06cad32.js"><link rel="prefetch" href="/CodeVault/assets/js/229.3f46b203.js"><link rel="prefetch" href="/CodeVault/assets/js/23.8a5bbf3f.js"><link rel="prefetch" href="/CodeVault/assets/js/230.b84fd605.js"><link rel="prefetch" href="/CodeVault/assets/js/231.ca2e1834.js"><link rel="prefetch" href="/CodeVault/assets/js/232.e572f662.js"><link rel="prefetch" href="/CodeVault/assets/js/233.0a7e6deb.js"><link rel="prefetch" href="/CodeVault/assets/js/234.9dddbcb6.js"><link rel="prefetch" href="/CodeVault/assets/js/235.b4ed574b.js"><link rel="prefetch" href="/CodeVault/assets/js/236.252b1f69.js"><link rel="prefetch" href="/CodeVault/assets/js/237.c529d9c4.js"><link rel="prefetch" href="/CodeVault/assets/js/238.16da920c.js"><link rel="prefetch" href="/CodeVault/assets/js/239.14f7892d.js"><link rel="prefetch" href="/CodeVault/assets/js/24.1ca1bd80.js"><link rel="prefetch" href="/CodeVault/assets/js/240.d00a46df.js"><link rel="prefetch" href="/CodeVault/assets/js/25.43c779a1.js"><link rel="prefetch" href="/CodeVault/assets/js/26.bdfe293e.js"><link rel="prefetch" href="/CodeVault/assets/js/27.330c11f5.js"><link rel="prefetch" href="/CodeVault/assets/js/28.46dfe7f4.js"><link rel="prefetch" href="/CodeVault/assets/js/29.4fc19b1e.js"><link rel="prefetch" href="/CodeVault/assets/js/3.44fcbdc8.js"><link rel="prefetch" href="/CodeVault/assets/js/30.da1d9fd7.js"><link rel="prefetch" href="/CodeVault/assets/js/31.df871787.js"><link rel="prefetch" href="/CodeVault/assets/js/32.e62268d4.js"><link rel="prefetch" href="/CodeVault/assets/js/33.b2c675b0.js"><link rel="prefetch" href="/CodeVault/assets/js/34.461e2f23.js"><link rel="prefetch" href="/CodeVault/assets/js/35.2666157f.js"><link rel="prefetch" href="/CodeVault/assets/js/36.b55a4b34.js"><link rel="prefetch" href="/CodeVault/assets/js/37.556ba5c1.js"><link rel="prefetch" href="/CodeVault/assets/js/38.8c982590.js"><link rel="prefetch" href="/CodeVault/assets/js/39.a7850266.js"><link rel="prefetch" href="/CodeVault/assets/js/4.8a0557a7.js"><link rel="prefetch" href="/CodeVault/assets/js/40.9a11a440.js"><link rel="prefetch" href="/CodeVault/assets/js/41.c3a71e10.js"><link rel="prefetch" href="/CodeVault/assets/js/42.7e9779c1.js"><link rel="prefetch" href="/CodeVault/assets/js/43.e017fec5.js"><link rel="prefetch" href="/CodeVault/assets/js/44.22c5aef3.js"><link rel="prefetch" href="/CodeVault/assets/js/45.dfe95d23.js"><link rel="prefetch" href="/CodeVault/assets/js/46.10af373d.js"><link rel="prefetch" href="/CodeVault/assets/js/47.a1e4779a.js"><link rel="prefetch" href="/CodeVault/assets/js/48.3142bf91.js"><link rel="prefetch" href="/CodeVault/assets/js/49.08546fe2.js"><link rel="prefetch" href="/CodeVault/assets/js/5.1bad1047.js"><link rel="prefetch" href="/CodeVault/assets/js/50.75c37eaf.js"><link rel="prefetch" href="/CodeVault/assets/js/51.b2f39f65.js"><link rel="prefetch" href="/CodeVault/assets/js/52.97fc3d07.js"><link rel="prefetch" href="/CodeVault/assets/js/53.1a2a51df.js"><link rel="prefetch" href="/CodeVault/assets/js/54.09f7dfd6.js"><link rel="prefetch" href="/CodeVault/assets/js/55.d112e5e2.js"><link rel="prefetch" href="/CodeVault/assets/js/56.b7b00837.js"><link rel="prefetch" href="/CodeVault/assets/js/57.5beac805.js"><link rel="prefetch" href="/CodeVault/assets/js/58.04f116f1.js"><link rel="prefetch" href="/CodeVault/assets/js/59.d660a6b3.js"><link rel="prefetch" href="/CodeVault/assets/js/6.7220274d.js"><link rel="prefetch" href="/CodeVault/assets/js/60.54783427.js"><link rel="prefetch" href="/CodeVault/assets/js/61.6e520517.js"><link rel="prefetch" href="/CodeVault/assets/js/62.78b5acff.js"><link rel="prefetch" href="/CodeVault/assets/js/63.0492d6b3.js"><link rel="prefetch" href="/CodeVault/assets/js/64.bd2a8518.js"><link rel="prefetch" href="/CodeVault/assets/js/65.8acc8c15.js"><link rel="prefetch" href="/CodeVault/assets/js/66.c2dc1d15.js"><link rel="prefetch" href="/CodeVault/assets/js/67.d584fc60.js"><link rel="prefetch" href="/CodeVault/assets/js/68.7221e725.js"><link rel="prefetch" href="/CodeVault/assets/js/69.f1a4c42c.js"><link rel="prefetch" href="/CodeVault/assets/js/7.ee190d28.js"><link rel="prefetch" href="/CodeVault/assets/js/70.8fb27ce3.js"><link rel="prefetch" href="/CodeVault/assets/js/71.2011297a.js"><link rel="prefetch" href="/CodeVault/assets/js/72.81904f20.js"><link rel="prefetch" href="/CodeVault/assets/js/73.cae4a206.js"><link rel="prefetch" href="/CodeVault/assets/js/74.41ca332e.js"><link rel="prefetch" href="/CodeVault/assets/js/75.ae7006ef.js"><link rel="prefetch" href="/CodeVault/assets/js/76.8477b765.js"><link rel="prefetch" href="/CodeVault/assets/js/77.ae764f14.js"><link rel="prefetch" href="/CodeVault/assets/js/78.b47518b4.js"><link rel="prefetch" href="/CodeVault/assets/js/79.bde0466f.js"><link rel="prefetch" href="/CodeVault/assets/js/8.e3ab8186.js"><link rel="prefetch" href="/CodeVault/assets/js/80.94af34f8.js"><link rel="prefetch" href="/CodeVault/assets/js/81.f1ba0edc.js"><link rel="prefetch" href="/CodeVault/assets/js/82.4485e21e.js"><link rel="prefetch" href="/CodeVault/assets/js/83.940dbcc3.js"><link rel="prefetch" href="/CodeVault/assets/js/84.6be8c64a.js"><link rel="prefetch" href="/CodeVault/assets/js/85.aa147bd8.js"><link rel="prefetch" href="/CodeVault/assets/js/86.0259d757.js"><link rel="prefetch" href="/CodeVault/assets/js/87.c88b420b.js"><link rel="prefetch" href="/CodeVault/assets/js/88.38f98c94.js"><link rel="prefetch" href="/CodeVault/assets/js/89.421840d7.js"><link rel="prefetch" href="/CodeVault/assets/js/9.cb249ed0.js"><link rel="prefetch" href="/CodeVault/assets/js/90.cd9b70c8.js"><link rel="prefetch" href="/CodeVault/assets/js/91.0c040f15.js"><link rel="prefetch" href="/CodeVault/assets/js/92.1ea436cf.js"><link rel="prefetch" href="/CodeVault/assets/js/93.7de38599.js"><link rel="prefetch" href="/CodeVault/assets/js/94.f2ad5a97.js"><link rel="prefetch" href="/CodeVault/assets/js/95.22f940d7.js"><link rel="prefetch" href="/CodeVault/assets/js/96.6a991248.js"><link rel="prefetch" href="/CodeVault/assets/js/97.aeccee85.js"><link rel="prefetch" href="/CodeVault/assets/js/98.79db6c16.js"><link rel="prefetch" href="/CodeVault/assets/js/99.aa13c9cb.js">
+    <link rel="stylesheet" href="/CodeVault/assets/css/0.styles.bcdd6f38.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/CodeVault/" class="home-link router-link-active"><img src="/CodeVault/img/huli.svg" alt="CodeVault文档站" class="logo"> <span class="site-name can-hide">CodeVault文档站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/CodeVault/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="全栈开发" class="dropdown-title"><a href="/CodeVault/pages/d1eaf8/" class="link-title">全栈开发</a> <span class="title" style="display:none;">全栈开发</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>云计算运维</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/d1eaf8/" class="nav-link">云计算</a></li></ul></li><li class="dropdown-item"><h4>容器开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/e820a7/" class="nav-link">容器</a></li></ul></li><li class="dropdown-item"><h4>K8S虚拟化</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/da2470/" class="nav-link">容器虚拟化</a></li></ul></li><li class="dropdown-item"><h4>运维高级篇</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/ce761d/" class="nav-link">高可用</a></li></ul></li><li class="dropdown-item"><h4>前端开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">前端常用</a></li></ul></li><li class="dropdown-item"><h4>后端开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">后端常用</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="资源" class="dropdown-title"><a href="/CodeVault/pages/e4db9d/" class="link-title">资源</a> <span class="title" style="display:none;">资源</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/CodeVault/pages/e4db9d/" class="nav-link">资源</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/c936ca/" class="nav-link">学习文档资源</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习路线" class="dropdown-title"><a href="/CodeVault/pages/f24c41/" class="link-title">学习路线</a> <span class="title" style="display:none;">学习路线</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>后端开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/f24c41/" class="nav-link">后端学习路线</a></li></ul></li><li class="dropdown-item"><h4>Web3</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/1583d1/" class="nav-link">区块链学习路线</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/CodeVault/pages/6ffa63/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>HTML5+CSS3</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/6ffa63/" class="nav-link">HTML5</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/b23e0c/" class="nav-link">CSS3</a></li></ul></li><li class="dropdown-item"><h4>JavaScript</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/0e8324/" class="nav-link">JavaScript开篇</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/4d9ec9/" class="nav-link">JavaScript面向对象</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/0505ad/" class="nav-link">JavaScript DOM</a></li></ul></li><li class="dropdown-item"><h4>API</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/845076/" class="nav-link">JQuery</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/9c8e93/" class="nav-link">Ajax</a></li><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">Axios</a></li></ul></li><li class="dropdown-item"><h4>Vue</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/a1209f/" class="nav-link">Vuejs</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><a href="/CodeVault/pages/5e1c7d/" class="link-title">后端</a> <span class="title" style="display:none;">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/5e1c7d/" class="nav-link">Java进阶</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/9b262c/" class="nav-link">Spring</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/3e651a/" class="nav-link">SpringBoot</a></li></ul></li><li class="dropdown-item"><h4>Golang</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/135518/" class="nav-link">Beego</a></li><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">Gin</a></li><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">Gorm</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="中间件" class="dropdown-title"><a href="/CodeVault/pages/7ef2c7/" class="link-title">中间件</a> <span class="title" style="display:none;">中间件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/CodeVault/pages/7ef2c7/" class="nav-link">MySQL</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/516f71/" class="nav-link">Redis</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/1eaa9a/" class="nav-link">Nginx</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/1ac9b2/" class="nav-link">Ceph</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/719244/" class="nav-link">Elasticsearch</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/6ec6ec/" class="nav-link">Istio</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/30e340/" class="nav-link">Prometheus</a></li></ul></div></div><div class="nav-item"><a href="/CodeVault/pages/32fd53/" class="nav-link">Docker</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8S" class="dropdown-title"><a href="/CodeVault/pages/46159d/" class="link-title">K8S</a> <span class="title" style="display:none;">K8S</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>云原生</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/46159d/" class="nav-link">Kubernetes</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/f87a46/" class="nav-link">CKS认证</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/2d432e/" class="nav-link">Operator</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/CodeVault/pages/f6f110/" class="nav-link">CI/CD</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><a href="/CodeVault/pages/f9fa7a/" class="link-title">Linux</a> <span class="title" style="display:none;">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Linux</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/f9fa7a/" class="nav-link">基础服务</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/314d26/" class="nav-link">Kvm</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/44e450/" class="nav-link">Ansible</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/8292d8/" class="nav-link">Git</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><a href="/CodeVault/pages/f3ea9f/" class="link-title">区块链</a> <span class="title" style="display:none;">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>FISCO BCOS</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/f3ea9f/" class="nav-link">WeBASE搭建</a></li></ul></li><li class="dropdown-item"><h4>2023年TASK挑战赛上</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/685f1f/" class="nav-link">碳排放解决方案</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/3f1596/" class="nav-link">慈善公益解决方案</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/cc43be/" class="nav-link">构造交易传入AppID</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/75ddc8/" class="nav-link">合约时间触发器</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/9bcc7c/" class="nav-link">一键部署环境脚本</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/a93fcf/" class="nav-link">合约调用机制与并行合约</a></li></ul></li><li class="dropdown-item"><h4>2023年TASK挑战赛下</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/1fdb40/" class="nav-link">DDCMS后端容器化</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/795b78/" class="nav-link">DDCMS第三方登录</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/a99040/" class="nav-link">DDCMS智能合约设计</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/cb310d/" class="nav-link">DDCMS部署和运维</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/0b1c5a/" class="nav-link">DDCMS接口报错</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/99df38/" class="nav-link">合约大小限制优化</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/f8a343/" class="nav-link">并行合约最佳实践</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/3d3086/" class="nav-link">一文搞懂Truffle测试</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/CodeVault/pages/e3d908/" class="nav-link">记录</a></div> <a href="https://github.com/CN-ZHANGYH/CodeVault" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><!----> <nav class="nav-links"><div class="nav-item"><a href="/CodeVault/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="全栈开发" class="dropdown-title"><a href="/CodeVault/pages/d1eaf8/" class="link-title">全栈开发</a> <span class="title" style="display:none;">全栈开发</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>云计算运维</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/d1eaf8/" class="nav-link">云计算</a></li></ul></li><li class="dropdown-item"><h4>容器开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/e820a7/" class="nav-link">容器</a></li></ul></li><li class="dropdown-item"><h4>K8S虚拟化</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/da2470/" class="nav-link">容器虚拟化</a></li></ul></li><li class="dropdown-item"><h4>运维高级篇</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/ce761d/" class="nav-link">高可用</a></li></ul></li><li class="dropdown-item"><h4>前端开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">前端常用</a></li></ul></li><li class="dropdown-item"><h4>后端开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">后端常用</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="资源" class="dropdown-title"><a href="/CodeVault/pages/e4db9d/" class="link-title">资源</a> <span class="title" style="display:none;">资源</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/CodeVault/pages/e4db9d/" class="nav-link">资源</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/c936ca/" class="nav-link">学习文档资源</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习路线" class="dropdown-title"><a href="/CodeVault/pages/f24c41/" class="link-title">学习路线</a> <span class="title" style="display:none;">学习路线</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>后端开发</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/f24c41/" class="nav-link">后端学习路线</a></li></ul></li><li class="dropdown-item"><h4>Web3</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/1583d1/" class="nav-link">区块链学习路线</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/CodeVault/pages/6ffa63/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>HTML5+CSS3</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/6ffa63/" class="nav-link">HTML5</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/b23e0c/" class="nav-link">CSS3</a></li></ul></li><li class="dropdown-item"><h4>JavaScript</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/0e8324/" class="nav-link">JavaScript开篇</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/4d9ec9/" class="nav-link">JavaScript面向对象</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/0505ad/" class="nav-link">JavaScript DOM</a></li></ul></li><li class="dropdown-item"><h4>API</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/845076/" class="nav-link">JQuery</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/9c8e93/" class="nav-link">Ajax</a></li><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">Axios</a></li></ul></li><li class="dropdown-item"><h4>Vue</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/a1209f/" class="nav-link">Vuejs</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><a href="/CodeVault/pages/5e1c7d/" class="link-title">后端</a> <span class="title" style="display:none;">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Java</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/5e1c7d/" class="nav-link">Java进阶</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/9b262c/" class="nav-link">Spring</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/3e651a/" class="nav-link">SpringBoot</a></li></ul></li><li class="dropdown-item"><h4>Golang</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/135518/" class="nav-link">Beego</a></li><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">Gin</a></li><li class="dropdown-subitem"><a href="/CodeVault/" class="nav-link">Gorm</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="中间件" class="dropdown-title"><a href="/CodeVault/pages/7ef2c7/" class="link-title">中间件</a> <span class="title" style="display:none;">中间件</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/CodeVault/pages/7ef2c7/" class="nav-link">MySQL</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/516f71/" class="nav-link">Redis</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/1eaa9a/" class="nav-link">Nginx</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/1ac9b2/" class="nav-link">Ceph</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/719244/" class="nav-link">Elasticsearch</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/6ec6ec/" class="nav-link">Istio</a></li><li class="dropdown-item"><!----> <a href="/CodeVault/pages/30e340/" class="nav-link">Prometheus</a></li></ul></div></div><div class="nav-item"><a href="/CodeVault/pages/32fd53/" class="nav-link">Docker</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="K8S" class="dropdown-title"><a href="/CodeVault/pages/46159d/" class="link-title">K8S</a> <span class="title" style="display:none;">K8S</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>云原生</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/46159d/" class="nav-link">Kubernetes</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/f87a46/" class="nav-link">CKS认证</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/2d432e/" class="nav-link">Operator</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/CodeVault/pages/f6f110/" class="nav-link">CI/CD</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Linux" class="dropdown-title"><a href="/CodeVault/pages/f9fa7a/" class="link-title">Linux</a> <span class="title" style="display:none;">Linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>Linux</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/f9fa7a/" class="nav-link">基础服务</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/314d26/" class="nav-link">Kvm</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/44e450/" class="nav-link">Ansible</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/8292d8/" class="nav-link">Git</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="区块链" class="dropdown-title"><a href="/CodeVault/pages/f3ea9f/" class="link-title">区块链</a> <span class="title" style="display:none;">区块链</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>FISCO BCOS</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/f3ea9f/" class="nav-link">WeBASE搭建</a></li></ul></li><li class="dropdown-item"><h4>2023年TASK挑战赛上</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/685f1f/" class="nav-link">碳排放解决方案</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/3f1596/" class="nav-link">慈善公益解决方案</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/cc43be/" class="nav-link">构造交易传入AppID</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/75ddc8/" class="nav-link">合约时间触发器</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/9bcc7c/" class="nav-link">一键部署环境脚本</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/a93fcf/" class="nav-link">合约调用机制与并行合约</a></li></ul></li><li class="dropdown-item"><h4>2023年TASK挑战赛下</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/CodeVault/pages/1fdb40/" class="nav-link">DDCMS后端容器化</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/795b78/" class="nav-link">DDCMS第三方登录</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/a99040/" class="nav-link">DDCMS智能合约设计</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/cb310d/" class="nav-link">DDCMS部署和运维</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/0b1c5a/" class="nav-link">DDCMS接口报错</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/99df38/" class="nav-link">合约大小限制优化</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/f8a343/" class="nav-link">并行合约最佳实践</a></li><li class="dropdown-subitem"><a href="/CodeVault/pages/3d3086/" class="nav-link">一文搞懂Truffle测试</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/CodeVault/pages/e3d908/" class="nav-link">记录</a></div> <a href="https://github.com/CN-ZHANGYH/CodeVault" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>学习笔记</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/CodeVault/pages/46159d/" class="sidebar-link">初识Kubernetes</a></li><li><a href="/CodeVault/pages/ff772d/" class="sidebar-link">kubeadm安装kubernetes</a></li><li><a href="/CodeVault/pages/9f3db7/" class="sidebar-link">Centos7基于Containerd部署Kubernetes v1.23.5</a></li><li><a href="/CodeVault/pages/e46184/" class="sidebar-link">Kubernetes的基础操作</a></li><li><a href="/CodeVault/pages/3ce2fd/" class="sidebar-link">Kubernetes监控与日志管理</a></li><li><a href="/CodeVault/pages/3738ba/" class="sidebar-link">Kubernetes应用程序生命周期管理</a></li><li><a href="/CodeVault/pages/b5d485/" class="sidebar-link">Kubernetes调度</a></li><li><a href="/CodeVault/pages/c7deaf/" class="sidebar-link">Kubernetes网络</a></li><li><a href="/CodeVault/pages/ed6cb5/" aria-current="page" class="active sidebar-link">Kubernetes存储</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#为什么需要存储卷" class="sidebar-link">为什么需要存储卷？</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#数据卷概述" class="sidebar-link">数据卷概述</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#临时存储卷-emptydir" class="sidebar-link">临时存储卷：emptyDir</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#节点存储卷-hostpath" class="sidebar-link">节点存储卷：hostPath</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#网络存储卷-nfs" class="sidebar-link">网络存储卷: NFS</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#持久卷-pv与pvc" class="sidebar-link">持久卷：PV与PVC</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#pv生命周期" class="sidebar-link">PV生命周期</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#pv与pvc使用流程" class="sidebar-link">PV与PVC使用流程</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#pv与pvc常见问题" class="sidebar-link">PV与PVC常见问题</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#pv-动态供给-storageclass" class="sidebar-link">PV 动态供给（StorageClass）</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#有状态应用部署-statefulset控制器" class="sidebar-link">有状态应用部署：StatefulSet控制器</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#statefulset" class="sidebar-link">StatefulSet：</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#应用程序配置文件存储-configmap" class="sidebar-link">应用程序配置文件存储：ConfigMap</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#configmap的使用" class="sidebar-link">configMap的使用</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#敏感数据存储-secret" class="sidebar-link">敏感数据存储：Secret</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#secret的docker-registry使用" class="sidebar-link">Secret的docker-registry使用</a></li><li class="sidebar-sub-header level2"><a href="/CodeVault/pages/ed6cb5/#secret-与-configmap-对比" class="sidebar-link">Secret 与 ConfigMap 对⽐</a></li></ul></li><li><a href="/CodeVault/pages/de082c/" class="sidebar-link">Kubernetes安全</a></li><li><a href="/CodeVault/pages/256223/" class="sidebar-link">Kubernetes集群维护</a></li><li><a href="/CodeVault/pages/24d932/" class="sidebar-link">Kubernetes故障排查</a></li><li><a href="/CodeVault/pages/d13a63/" class="sidebar-link">Helm包管理</a></li><li><a href="/CodeVault/pages/a2b2e9/" class="sidebar-link">Kubernetes 高级运维</a></li><li><a href="/CodeVault/pages/79ca6c/" class="sidebar-link">NFS做Kubernetes的后端存储</a></li><li><a href="/CodeVault/pages/af5bae/" class="sidebar-link">GlusterFs对接K8S</a></li><li><a href="/CodeVault/pages/2e6a5b/" class="sidebar-link">Ceph对接K8S存储使用RBD</a></li><li><a href="/CodeVault/pages/c741d8/" class="sidebar-link">Rook构建Ceph云原生存储</a></li><li><a href="/CodeVault/pages/a5e623/" class="sidebar-link">Kubectl多集群配置</a></li><li><a href="/CodeVault/pages/a19b63/" class="sidebar-link">为系统守护进程预留计算资源</a></li><li><a href="/CodeVault/pages/770b73/" class="sidebar-link">Kubernetes（k8s）Helm v3 部署 EFK 日志系统</a></li><li><a href="/CodeVault/pages/53253e/" class="sidebar-link">Kubernetes Python Client</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>CKS认证</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/CodeVault/pages/f87a46/" class="sidebar-link">K8S集群部署与安全配置</a></li><li><a href="/CodeVault/pages/0afbf4/" class="sidebar-link">集群强化</a></li><li><a href="/CodeVault/pages/b1d55f/" class="sidebar-link">K8s容器运行环境安全加固</a></li><li><a href="/CodeVault/pages/a07736/" class="sidebar-link">最小化微服务漏洞</a></li><li><a href="/CodeVault/pages/203728/" class="sidebar-link">供应链安全</a></li><li><a href="/CodeVault/pages/1ac8ea/" class="sidebar-link">监控、审计和运行时安全</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Operator</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/CodeVault/pages/2d432e/" class="sidebar-link">深入理解 Kubernetes Operator</a></li><li><a href="/CodeVault/pages/4b0d17/" class="sidebar-link">RESTClient原理</a></li><li><a href="/CodeVault/pages/91f3df/" class="sidebar-link">基于Client-go访问Kubernetes API</a></li><li><a href="/CodeVault/pages/ea64f1/" class="sidebar-link">Kubernetes CRD详解</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/CodeVault/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><span data-v-06225672>K8S</span></li><li data-v-06225672><span data-v-06225672>学习笔记</span></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="https://github.com/cn-zhangyh" target="_blank" title="作者" class="beLink" data-v-06225672>Yyzop</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2022-01-22</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">Kubernetes存储<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h1 id="kubernetes存储"><a href="#kubernetes存储" class="header-anchor">#</a> Kubernetes存储</h1> <h2 id="为什么需要存储卷"><a href="#为什么需要存储卷" class="header-anchor">#</a> 为什么需要存储卷？</h2> <ul><li><p><strong>容器部署过程中一般有以下三种数据：</strong></p></li> <li><p><strong>启动时需要的初始数据，例如配置文件</strong></p></li> <li><p><strong>启动过程中产生的临时数据，该临时数据需要多个容器间共享</strong></p></li> <li><p><strong>启动过程中产生的持久化数据，例如MySQL的data目录</strong></p> <img src="https://pic.imgdb.cn/item/61ebef7f2ab3f51d9116771f.png" style="zoom:67%;"></li></ul> <h2 id="数据卷概述"><a href="#数据卷概述" class="header-anchor">#</a> 数据卷概述</h2> <ul><li><p><code>Kubernetes中的Volume提供了在容器中挂载外部存储的能力</code></p></li> <li><p>Pod需要设置卷来源（spec.volume）和挂载点（spec.containers.volumeMounts）两个信息后才可以使用相应的Volume</p></li> <li><p>使用数据卷的流程：镜像里程序写的目录 &gt; mountPath &gt; 引用的volumes对应的name &gt; 相关卷的配置</p></li> <li><p><strong>常用的数据卷：</strong></p> <ul><li><p>本地（hostPath，emptyDir）</p></li> <li><p>网络（NFS，Ceph，GlusterFS）</p></li> <li><p>公有云（AWS EBS）</p></li> <li><p>K8S资源（configmap，secret）</p></li></ul></li></ul> <h2 id="临时存储卷-emptydir"><a href="#临时存储卷-emptydir" class="header-anchor">#</a> 临时存储卷：emptyDir</h2> <ul><li><p><strong>emptyDir卷：</strong></p> <ul><li><strong>是一个临时存储卷，与Pod生命周期绑定一起，如果 Pod删除了卷也会被删除。</strong></li> <li><strong>共享目录是在Pod的所在节点创建的。</strong></li></ul></li> <li><p><strong>应用场景：</strong></p> <ul><li><code>Pod中容器之间数据共享</code></li> <li><code>sideacer（边车）</code></li> <li><code>initcontainer（初始容器）</code></li></ul></li></ul> <blockquote><p><strong>emptyDir的用法</strong></p></blockquote> <ul><li><p><strong>使用emptyDir的临时存储卷测试Pod之间</strong></p></li> <li><p><strong>一个Pod是写入1到100到hello文件，另外一个Pod是读取，他们之间使用临时卷共享</strong></p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat pod.yaml</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>pod
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> write					<span class="token comment">#容器一是写入														</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;bash&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;for i in {1..100};do echo $i &gt;&gt; /data/hello;sleep 1;done&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> centos
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>				<span class="token comment">#数据卷的挂载</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> data				<span class="token comment">#数据卷绑定的名称</span>
+        <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /data		<span class="token comment">#使用路径挂载在容器内部</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> read					<span class="token comment">#容器二是读取</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;bash&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;tail -f /data/hello&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> centos
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> data
+        <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /data
+
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>						<span class="token comment">#数据卷定义</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> data					<span class="token comment">#数据卷指定一个名称</span>
+    <span class="token key atrule">emptyDir</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>				<span class="token comment">#数据卷的类型</span>
+</code></pre></div><ul><li><p><strong>查看Pod运行在哪个节点上面</strong></p></li> <li><p><strong>这里显示是在Node1节点上面，可以去Node1上查看</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pods  -o wide</span>
+NAME     READY   STATUS    RESTARTS   AGE     IP               NODE    NOMINATED NODE   READINESS GATES
+my-pod   <span class="token number">2</span>/2     Running   <span class="token number">1</span>          2m42s   <span class="token number">10.244</span>.166.131   node1   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre></div><ul><li><strong>在node1节点查看容器运行的进程</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@node1 ~<span class="token punctuation">]</span><span class="token comment"># docker ps | grep my-pod </span>
+4d0d67966468   centos                                               <span class="token string">&quot;bash -c 'tail -f /d…&quot;</span>   About a minute ago   Up About a minute             k8s_read_my-pod_default_4a359535-0bea-4231-9ac7-e7b0d91afb74_0 <span class="token comment">#这里的后面的id就是数据卷存储的目录</span>
+60cdb7fa3d29   centos                                               <span class="token string">&quot;bash -c 'for i in {…&quot;</span>   About a minute ago   Up About a minute             k8s_writemy-pod_default_4a359535-0bea-4231-9ac7-e7b0d91afb74_0
+1c898733272d   registry.aliyuncs.com/google_containers/pause:3.2    <span class="token string">&quot;/pause&quot;</span>                 About a minute ago   Up About a minute             k8s_POD_my-pod_default_4a359535-0bea-4231-9ac7-e7b0d91afb74_0
+</code></pre></div><p><strong>查找数据卷映射的目录</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@node1 ~<span class="token punctuation">]</span><span class="token comment"># cd /var/lib/kubelet/pods/</span>
+<span class="token punctuation">[</span>root@node1 pods<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">12</span>
+drwxr-x--- <span class="token number">5</span> root root <span class="token number">4096</span> Nov  <span class="token number">5</span> 00:24 4a359535-0bea-4231-9ac7-e7b0d91afb74   <span class="token comment">#第一个就是这个Pod</span>
+drwxr-x--- <span class="token number">5</span> root root <span class="token number">4096</span> Nov  <span class="token number">4</span> <span class="token number">23</span>:31 b08e29c6-ba4b-4416-89e2-48df0a101535
+drwxr-x--- <span class="token number">5</span> root root <span class="token number">4096</span> Nov  <span class="token number">4</span> <span class="token number">23</span>:32 b98cfa42-b9c9-47db-a0d7-2aeb468a24d1
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@node1 pods<span class="token punctuation">]</span><span class="token comment"># cd 4a359535-0bea-4231-9ac7-e7b0d91afb74/volumes/kubernetes.io~empty-dir/</span>
+<span class="token punctuation">[</span>root@node1 kubernetes.io~empty-dir<span class="token punctuation">]</span><span class="token comment"># ls </span>
+data															<span class="token comment">#这个data就是该Pod进行的数据卷共享的目录</span>
+<span class="token punctuation">[</span>root@node1 kubernetes.io~empty-dir<span class="token punctuation">]</span><span class="token comment"># cd data/</span>
+<span class="token punctuation">[</span>root@node1 data<span class="token punctuation">]</span><span class="token comment"># ls</span>
+hello               
+</code></pre></div><h2 id="节点存储卷-hostpath"><a href="#节点存储卷-hostpath" class="header-anchor">#</a> <strong>节点存储卷：hostPath</strong></h2> <ul><li><p><strong>hostPath卷：</strong></p> <ul><li><strong>挂载Node文件系统（Pod所在节点）上文件或者目 录到Pod中的容器。</strong></li></ul></li> <li><p><strong>应用场景：</strong></p> <ul><li><strong>Pod中容器需要访问宿主机文件</strong></li> <li><strong>我的应用程序想读取系统的某个文件</strong></li></ul></li></ul> <blockquote><p><strong>hostPath的用法</strong></p></blockquote> <ul><li><p><strong>使用挂载宿主机的/tmp的目录</strong></p></li> <li><p><strong>容器挂载在/data目录下</strong></p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat hostpath.yaml</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>pod
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">args</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> /bin/sh
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span>c
+    <span class="token punctuation">-</span> sleep 36000
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>			<span class="token comment">#挂载在容器的数据卷</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> data			<span class="token comment">#指定定义名称</span>
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /data		<span class="token comment">#挂载在容器的/data位置</span>
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>					<span class="token comment">#指定数据卷的来源</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> data				<span class="token comment">#指定定义名称</span>
+    <span class="token key atrule">hostPath</span><span class="token punctuation">:</span>
+      <span class="token key atrule">path</span><span class="token punctuation">:</span> /tmp			<span class="token comment">#指定数据卷源目录</span>
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> Directory		<span class="token comment">#指定数据卷类型</span>
+</code></pre></div><ul><li><strong>进入容器查看/data下面是否有数据</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master tmp<span class="token punctuation">]</span><span class="token comment"># kubectl exec -it my-pod  -- sh</span>
+/ <span class="token comment"># cd /data/</span>
+/data <span class="token comment"># ls</span>
+hsperfdata_root
+systemd-private-55c453af06944c75a71a7703af924fc9-chronyd.service-re7Kjy
+wrapper-619-1-in
+wrapper-619-1-out
+/data <span class="token comment"># touch  a.tzxt   #创建一个文件</span>
+</code></pre></div><ul><li><p><strong>查看该Pod是运行在哪一个节点上面</strong></p></li> <li><p><strong>查看该节点的/tmp下面是否有我创建的文件</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master tmp<span class="token punctuation">]</span><span class="token comment"># kubectl get pods -o wide</span>
+NAME     READY   STATUS    RESTARTS   AGE   IP               NODE    NOMINATED NODE   READINESS GATES
+my-pod   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          14m   <span class="token number">10.244</span>.166.132   node1   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@node1 ~<span class="token punctuation">]</span><span class="token comment"># cd /tmp/</span>
+<span class="token punctuation">[</span>root@node1 tmp<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">8</span>
+-rw-r--r-- <span class="token number">1</span> root root    <span class="token number">0</span> Nov  <span class="token number">5</span> 00:53 a.tzxt
+drwxr-xr-x <span class="token number">2</span> root root <span class="token number">4096</span> Nov  <span class="token number">4</span> <span class="token number">21</span>:39 hsperfdata_root
+drwx------ <span class="token number">3</span> root root <span class="token number">4096</span> Nov  <span class="token number">4</span> <span class="token number">21</span>:38 systemd-private-55c453af06944c75a71a7703af924fc9-chronyd.service-re7Kjy
+prw-r--r-- <span class="token number">1</span> root root    <span class="token number">0</span> Nov  <span class="token number">5</span> 00:56 wrapper-619-1-in
+prw-r--r-- <span class="token number">1</span> root root    <span class="token number">0</span> Nov  <span class="token number">5</span> 00:56 wrapper-619-1-out
+</code></pre></div><h2 id="网络存储卷-nfs"><a href="#网络存储卷-nfs" class="header-anchor">#</a> 网络存储卷: NFS</h2> <ul><li><p><code>Kubernetes的NFS存储用于将某事先存在的NFS服务器导出export的存储空间挂载到Pod中来供Pod容器使用。</code></p></li> <li><p>与emptyDir不同的是，NFS存储在Pod对象终止后仅是被卸载而非删除。另外，NFS是文件系统及共享服务，它支持同时存在多路挂载请求。</p></li> <li><p><strong>使用nfs数据卷目标：</strong></p> <ul><li>pod启动之后产生的数据持久化到远程存储</li> <li>pod多副本共享数据</li></ul></li> <li><p><strong>定义NFS存储时，常用到以下字段。</strong></p> <ul><li><code>server</code> ：NFS服务器的IP地址或者主机名，必选字段。</li> <li><code>path</code> ：NFS服务器导出(共享)的文件系统路径，必选字段。</li> <li><code>readOnly</code> ：是否以只读挂载，默认为false。</li></ul></li></ul> <blockquote><p><strong>NFS持久化的用法</strong></p></blockquote> <ul><li><strong>在node1上安装NFS服务端</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># yum install -y nfs-utils </span>
+<span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># echo &quot;/nfs/kubernetes *(rw,no_root_squash)&quot; &gt; /etc/exports</span>
+<span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># mkdir -p /nfs/kubernetes</span>
+<span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart rpcbind &amp;&amp; systemctl restart nfs </span>
+<span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># echo &quot;666&quot; &gt; index.html /nfs/kubernetes</span>
+<span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># showmount -e 192.168.1.88</span>
+</code></pre></div><p><strong>配置说明：</strong></p> <p><code>/data/k8s：</code> 是共享的数据⽬录**
+<code>* ：</code> 表示任何⼈都有权限连接，当然也可以是⼀个⽹段，⼀个 IP，也可以是域名**
+<code>rw：</code> 读写的权限**
+<code>sync：</code> 表示⽂件同时写⼊硬盘和内存**
+<code>no_root_squash：</code> 当登录 NFS 主机使⽤共享⽬录的使⽤者是 root 时，其权限将被转换成为匿名使⽤者，通常它的 UID 与 GID，都会变成 nobody 身份</p> <ul><li>在master节点上安装NFS服务端</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># yum install -y nfs-utils </span>
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># systemctl restart rpcbind &amp;&amp; systemctl restart nfs </span>
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># mount -t nfs 192.168.1.88:/nfs/kubernetes /mnt/ </span>
+</code></pre></div><ul><li>创建一个pod控制器使用网络共享NFS存储挂载</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl create deployment nginx --image=nginx --port=80 --dry-run -o yaml &gt; deployment.yaml </span>
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat deployment.yaml  </span>
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: <span class="token number">1</span>
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: <span class="token number">80</span>
+        volumeMounts: 
+        - name: wwwroot 
+          mountPath: /usr/share/nginx/html 
+      volumes: 
+      - name: wwwroot 
+        nfs: 
+          server: <span class="token number">192.168</span>.1.95
+          path: /nfs/kubernetes
+          
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f  deployment.yaml  </span>
+deployment.apps/nginx created
+</code></pre></div><ul><li>检查nfs存储是否生效</li> <li>发现容器内挂载在/usr/share/nginx/html下面的index.html正是所写入得到内容</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl exec -it nginx-cfb45c844-8zcqh bash</span>
+kubectl <span class="token builtin class-name">exec</span> <span class="token punctuation">[</span>POD<span class="token punctuation">]</span> <span class="token punctuation">[</span>COMMAND<span class="token punctuation">]</span> is DEPRECATED and will be removed <span class="token keyword">in</span> a future version. Use kubectl <span class="token builtin class-name">exec</span> <span class="token punctuation">[</span>POD<span class="token punctuation">]</span> -- <span class="token punctuation">[</span>COMMAND<span class="token punctuation">]</span> instead.
+root@nginx-cfb45c844-8zcqh:/<span class="token comment"># cd /usr/share/nginx/html/</span>
+root@nginx-cfb45c844-8zcqh:/usr/share/nginx/html<span class="token comment"># ls</span>
+index.html
+root@nginx-cfb45c844-8zcqh:/usr/share/nginx/html<span class="token comment"># cat index.html </span>
+<span class="token number">6666</span>
+</code></pre></div><ul><li>暴露该端口使用Nodeport访问</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl expose deployment nginx --port=80 --target-port=80 --type=NodePort</span>
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get service </span>
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>        AGE
+kubernetes   ClusterIP   <span class="token number">10.96</span>.0.1       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">443</span>/TCP        115m
+nginx        NodePort    <span class="token number">10.110</span>.18.210   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">80</span>:30354/TCP   35m
+</code></pre></div><h2 id="持久卷-pv与pvc"><a href="#持久卷-pv与pvc" class="header-anchor">#</a> 持久卷：PV与PVC</h2> <p><strong>持久卷的概述：</strong></p> <ul><li><p><code>PersistentVolume（PV）</code>：对存储资源创建和使用的抽象，使得存储作为集群中的资源管理</p></li> <li><p><code>PersistentVolumeClaim（PVC）</code>：让用户不需要关心具体的Volume实现细节</p></li></ul> <p>​持久卷（PersistentVolume，PV）是集群中的一块存储，可以由管理员事先供应，或者 使用<a href="https://kubernetes.io/zh/docs/concepts/storage/storage-classes/" target="_blank" rel="noopener noreferrer">存储类（Storage Class）<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>来动态供应。 持久卷是集群资源，就像节点也是集群资源一样。PV 持久卷和普通的 Volume 一样，也是使用 卷插件来实现的，只是它们拥有独立于任何使用 PV 的 Pod 的生命周期。</p> <p>​持久卷申领（PersistentVolumeClaim，PVC）表达的是用户对存储的请求。概念上与 Pod 类似。 Pod 会耗用节点资源，而 PVC 申领会耗用 PV 资源。Pod 可以请求特定数量的资源（CPU 和内存）；同样 PVC 申领也可以请求特定的大小和访问模式 （例如，可以要求 PV 卷能够以 ReadWriteOnce、ReadOnlyMany 或 ReadWriteMany 模式之一来挂载</p> <h2 id="pv生命周期"><a href="#pv生命周期" class="header-anchor">#</a> PV生命周期</h2> <img src="https://pic.imgdb.cn/item/61ebf35f2ab3f51d911a4384.png" style="zoom:67%;"> <blockquote><p><strong>Capacity（存储能⼒）</strong></p></blockquote> <p>⼀般来说，⼀个 PV 对象都要指定⼀个存储能⼒，通过 PV 的 capacity属性来设置的，⽬前只⽀持存储 空间的设置，就是我们这⾥的 storage=1Gi，不过未来可能会加⼊ IOPS、吞吐量等指标的配置。</p> <blockquote><p><strong>AccessModes（访问模式）</strong></p></blockquote> <p>AccessModes 是⽤来对 PV 进⾏访问模式的设置，⽤于描述⽤户应⽤对存储资源的访问权限，访问权 限包括下⾯⼏种⽅式：*</p> <ul><li><code>ReadWriteOnce（RWO）</code>：读写权限，但是只能被单个节点挂载</li> <li><code>ReadOnlyMany（ROX）</code>：只读权限，可以被多个节点挂载</li> <li><code>ReadWriteMany（RWX）</code>：读写权限，可以被多个节点挂载</li> <li><code>注意</code>：⼀些 PV 可能⽀持多种访问模式，但是在挂载的时候只能使⽤⼀种访问模式，多种访问模 式是不会⽣效的。</li></ul> <blockquote><p><strong>persistentVolumeReclaimPolicy（回收策略）</strong></p></blockquote> <p><strong>我这⾥指定的 PV 的回收策略为 Recycle，⽬前 PV ⽀持的策略有三种：</strong></p> <ul><li><code>Retain（保留）</code> 保留数据，需要管理员⼿⼯清理数据</li> <li><code>Recycle（回收）</code> 清除 PV 中的数据，效果相当于执⾏ <code>rm -rf /thevoluem/*</code></li> <li><code>Delete（删除）</code> 与 PV 相连的后端存储完成 volume 的删除操作，当然这常⻅于云服务商的存储 服务，⽐如 ASW EBS。</li> <li>不过需要注意的是，⽬前只有 NFS 和 HostPath 两种类型⽀持回收策略。当然⼀般来说还是设置为 Retain 这种策略保险⼀点。</li></ul> <blockquote><p><strong>PV的生命周期状态</strong></p></blockquote> <p>⼀个 PV 的⽣命周期中，可能会处于4中不同的阶段：</p> <ul><li><code>Available（可⽤）：</code> 表示可⽤状态，还未被任何 PVC 绑定</li> <li><code>Bound（已绑定）：</code> 表示 PVC 已经被 PVC 绑定</li> <li><code>Released（已释放）：</code> PVC 被删除，但是资源还未被集群重新声明</li> <li><code>Failed（失败）：</code>  表示该 PV 的⾃动回收失败</li></ul> <h2 id="pv与pvc使用流程"><a href="#pv与pvc使用流程" class="header-anchor">#</a> PV与PVC使用流程</h2> <blockquote><p><strong>Pv的使用</strong></p></blockquote> <ul><li><p><strong><code>有了上⾯的 NFS 共享存储，下⾯我们就可以来使⽤ PV 和 PVC 了。</code></strong></p></li> <li><p>PV 作为存储资源，主要包括存储 能⼒、访问模式、存储类型、回收策略等关键信息，下⾯我们来新建⼀个PV对象，使⽤nfs类型的后 端存储，5G 的存储空间，访问模式为 ReadWriteOnce，回收策略为 Recyle</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat pv.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolume
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>pvc
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">capacity</span><span class="token punctuation">:</span>						<span class="token comment">#存储空间</span>
+    <span class="token key atrule">storage</span><span class="token punctuation">:</span> 5Gi
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>					<span class="token comment">#访问模式</span>
+    <span class="token punctuation">-</span> ReadWriteOnce				<span class="token comment">#单个节点挂载的读写权限</span>
+  <span class="token key atrule">persistentVolumeReclaimPolicy</span><span class="token punctuation">:</span> Recycle
+  <span class="token key atrule">nfs</span><span class="token punctuation">:</span>
+    <span class="token key atrule">path</span><span class="token punctuation">:</span> /nfs/kubernetes
+    <span class="token key atrule">server</span><span class="token punctuation">:</span> 192.168.1.88
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f pv.yaml </span>
+persistentvolume/my-pvc created
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pv </span>
+NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE
+my-pvc   5Gi        RWO            Recycle          Available                                   4s
+</code></pre></div><blockquote><p><strong>PVC的使用</strong></p> <p>但是在我们真正使⽤的时候是使⽤的 PVC，就类似于我们的服务是通 过 Pod 来运⾏的，⽽不是 Node，只是 Pod 跑在 Node 上⽽已，所以这节课我们就来给⼤家讲解下 PVC 的使⽤⽅法。</p></blockquote> <ul><li><strong>我们来新建⼀个数据卷声明，我们来请求 5Gi 的存储容量，访问模式也是 ReadWriteOnce</strong></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat pvc.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolumeClaim
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>pvc    
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ReadWriteOnce
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>			<span class="token comment">#设置资源</span>
+    <span class="token key atrule">requests</span><span class="token punctuation">:</span>			<span class="token comment">#请求的资源为5Gi</span>
+      <span class="token key atrule">storage</span><span class="token punctuation">:</span> 5Gi
+</code></pre></div><ul><li><p><strong><code>此时的pv和pvc都将变成bound</code></strong></p></li> <li><p><strong>因为pv的存储空间被pvc绑定所有显示bound被使用</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f pvc.yaml  </span>
+persistentvolumeclaim/my-pvc created
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pvc </span>
+NAME     STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+my-pvc   Bound    my-pvc   5Gi        RWO                           6s
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pv</span>
+NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM            STORAGECLASS   REASON   AGE
+my-pvc   5Gi        RWO            Recycle          Bound    default/my-pvc                           42m
+</code></pre></div><ul><li><p><strong><code>创建一个Pod使用PVC持久化</code></strong></p></li> <li><p><strong>指定容器挂载目录是/usr/share/nginx/html</strong></p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat pod.yaml  </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>pod 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx 
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> www
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /usr/share/nginx/html 
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> www
+      <span class="token key atrule">persistentVolumeClaim</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">claimName</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>pvc
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f pod.yaml  </span>
+pod/my-pod created
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pods </span>
+NAME     READY   STATUS    RESTARTS   AGE
+my-pod   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          63s
+</code></pre></div><ul><li><p><strong>验证pvc是否能正常使用</strong></p></li> <li><p><strong>进入my-pod的容器，创建index.html的文件</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl exec -it my-pod -- bash</span>
+root@my-pod:/<span class="token comment"># cd /usr/share/nginx/html/</span>
+root@my-pod:/usr/share/nginx/html<span class="token comment"># ls</span>
+root@my-pod:/usr/share/nginx/html<span class="token comment"># echo 3333 &gt;&gt; index.html </span>
+root@my-pod:/usr/share/nginx/html<span class="token comment"># exit </span>
+<span class="token builtin class-name">exit</span>
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pods -o wide </span>
+NAME     READY   STATUS    RESTARTS   AGE    IP               NODE   NOMINATED NODE   READINESS GATES
+my-pod   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          3m7s   <span class="token number">10.244</span>.167.140   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># curl 10.244.167.140</span>
+<span class="token number">3333</span>
+</code></pre></div><ul><li><p><strong>在nfs的服务端上查看</strong></p></li> <li><p><strong>验证成功， pvc的持久化能够正常使用</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># cd /nfs/kubernetes/</span>
+<span class="token punctuation">[</span>root@node kubernetes<span class="token punctuation">]</span><span class="token comment"># ls </span>
+index.html
+<span class="token punctuation">[</span>root@node kubernetes<span class="token punctuation">]</span><span class="token comment"># cat index.html </span>
+<span class="token number">3333</span>
+</code></pre></div><h2 id="pv与pvc常见问题"><a href="#pv与pvc常见问题" class="header-anchor">#</a> PV与PVC常见问题</h2> <p><strong>pv与pvc关系？</strong></p> <ul><li><strong>一对一的关系互联</strong></li></ul> <p><strong>pv与pvc怎么匹配的？</strong></p> <ul><li><strong><code>存储空间</code></strong></li> <li><strong><code>访问模式</code></strong></li></ul> <p><strong>容器匹配策略是怎么样的？</strong></p> <ul><li>匹配最接近的pv容量</li> <li>如果满足不了，pod处于pending</li></ul> <p><strong>存储空间的字段是限制使用容量？</strong></p> <ul><li><strong><code>这个字段主要用于做匹配的，实际使用限制取决于后端存储</code></strong></li></ul> <blockquote><p><strong>简而言之，无状态可以理解为：不用考虑多副本时之间的关系、是否有独立存储等</strong></p></blockquote> <h2 id="pv-动态供给-storageclass"><a href="#pv-动态供给-storageclass" class="header-anchor">#</a> PV 动态供给（StorageClass）</h2> <img src="https://pic.imgdb.cn/item/61ebf37e2ab3f51d911a5fcb.png" style="zoom:67%;"> <img src="https://pic.imgdb.cn/item/61ebf3ac2ab3f51d911a8b9d.png" style="zoom:80%;"> <p>K8s默认不支持NFS动态供给，需要单独部署社区开发的插件。</p> <p>项目地址：https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master nfs-external-provisioner<span class="token punctuation">]</span><span class="token comment"># ll</span>
+total <span class="token number">12</span>
+-rw-r--r-- <span class="token number">1</span> root root  <span class="token number">255</span> Mar <span class="token number">27</span>  <span class="token number">2021</span> class.yaml
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">1054</span> Nov  <span class="token number">5</span> <span class="token number">23</span>:16 deployment.yaml
+-rw-r--r-- <span class="token number">1</span> root root <span class="token number">1819</span> Mar <span class="token number">27</span>  <span class="token number">2021</span> rbac.yaml
+</code></pre></div><blockquote><p><strong>部署NFS动态供应</strong></p></blockquote> <ul><li><strong>创建授权访问apiserver</strong></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master nfs<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner<span class="token punctuation">]</span><span class="token comment"># cat rbac.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+  <span class="token comment"># replace with namespace where provisioner is deployed</span>
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner<span class="token punctuation">-</span>runner
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;persistentvolumes&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">verbs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;get&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;list&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;watch&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;create&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;delete&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;persistentvolumeclaims&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">verbs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;get&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;list&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;watch&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;update&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;storage.k8s.io&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;storageclasses&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">verbs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;get&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;list&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;watch&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;events&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">verbs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;create&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;update&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;patch&quot;</span><span class="token punctuation">]</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRoleBinding
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> run<span class="token punctuation">-</span>nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+    <span class="token comment"># replace with namespace where provisioner is deployed</span>
+    <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner<span class="token punctuation">-</span>runner
+  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
+<span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> leader<span class="token punctuation">-</span>locking<span class="token punctuation">-</span>nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+  <span class="token comment"># replace with namespace where provisioner is deployed</span>
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">rules</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;endpoints&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">verbs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;get&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;list&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;watch&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;create&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;update&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;patch&quot;</span><span class="token punctuation">]</span>
+<span class="token punctuation">---</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> RoleBinding
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> leader<span class="token punctuation">-</span>locking<span class="token punctuation">-</span>nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+  <span class="token comment"># replace with namespace where provisioner is deployed</span>
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> ServiceAccount
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+    <span class="token comment"># replace with namespace where provisioner is deployed</span>
+    <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> leader<span class="token punctuation">-</span>locking<span class="token punctuation">-</span>nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
+  
+<span class="token punctuation">[</span>root@master nfs<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f rbac.yaml </span>
+</code></pre></div><ul><li><strong>部署插件，需修改里面NFS服务器地址与共享目录</strong></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master nfs<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner<span class="token punctuation">]</span><span class="token comment"># cat deployment.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+  <span class="token comment"># replace with namespace where provisioner is deployed</span>
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">strategy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> Recreate
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">serviceAccountName</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner
+          <span class="token key atrule">image</span><span class="token punctuation">:</span> lizhenliang/nfs<span class="token punctuation">-</span>subdir<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner<span class="token punctuation">:</span>v4.0.1
+          <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>root
+              <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /persistentvolumes
+          <span class="token key atrule">env</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> PROVISIONER_NAME
+              <span class="token key atrule">value</span><span class="token punctuation">:</span> k8s<span class="token punctuation">-</span>sigs.io/nfs<span class="token punctuation">-</span>subdir<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner
+            <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> NFS_SERVER
+              <span class="token key atrule">value</span><span class="token punctuation">:</span> 192.168.1.88					<span class="token comment">#修改NFS的服务端的地址</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> NFS_PATH			
+              <span class="token key atrule">value</span><span class="token punctuation">:</span> /nfs/kubernetes				<span class="token comment">#NFS服务端的存储路径</span>
+      <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>root
+          <span class="token key atrule">nfs</span><span class="token punctuation">:</span>
+            <span class="token key atrule">server</span><span class="token punctuation">:</span> 192.168.1.88					<span class="token comment">#NFS服务端地址</span>
+            <span class="token key atrule">path</span><span class="token punctuation">:</span> /nfs/kubernetes 					<span class="token comment">#NFS服务端的存储路径</span>
+            
+<span class="token punctuation">[</span>root@master nfs<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f deployment.yaml </span>
+</code></pre></div><ul><li><strong>创建存储类</strong></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master nfs<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner<span class="token punctuation">]</span><span class="token comment"># cat class.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> storage.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> StorageClass
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> managed<span class="token punctuation">-</span>nfs<span class="token punctuation">-</span>storage
+<span class="token key atrule">provisioner</span><span class="token punctuation">:</span> k8s<span class="token punctuation">-</span>sigs.io/nfs<span class="token punctuation">-</span>subdir<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner <span class="token comment"># or choose another name, must match deployment's env PROVISIONER_NAME'</span>
+<span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+  <span class="token key atrule">archiveOnDelete</span><span class="token punctuation">:</span> <span class="token string">&quot;false&quot;</span>
+  
+<span class="token punctuation">[</span>root@master nfs<span class="token punctuation">-</span>external<span class="token punctuation">-</span>provisioner<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f class.yaml </span>
+</code></pre></div><ul><li><strong>查看存储类</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get sc </span>
+NAME                  PROVISIONER                                   RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+managed-nfs-storage   k8s-sigs.io/nfs-subdir-external-provisioner   Delete          Immediate           <span class="token boolean">false</span>                  18m
+</code></pre></div><blockquote><p><strong>使用动态供应</strong></p></blockquote> <ul><li><strong>⾸先创建⼀ 个PVC对象</strong></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat test-pvc.yaml </span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolumeClaim
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>pvc
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ReadWriteMany
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+    <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+      <span class="token key atrule">storage</span><span class="token punctuation">:</span> 1Mi 
+</code></pre></div><p><code>我们这⾥声明了⼀个 PVC 对象，采⽤ ReadWriteMany 的访问模式，请求 1Mi 的空间</code>，但是我们可以 看到上⾯的 PVC ⽂件我们没有标识出任何和 StorageClass 相关联的信息，那么如果我们现在直接创 建这个 PVC 对象能够⾃动绑定上合适的 PV 对象吗？显然是不能的(前提是没有合适的 PV)，我们这⾥ 有两种⽅法可以来利⽤上⾯我们创建的 StorageClass 对象来⾃动帮我们创建⼀个合适的 PV:</p> <ul><li><strong>第⼀种⽅法：</strong></li></ul> <p><strong><code>在这个 PVC 对象中添加⼀个声明storageName对象的标识，这⾥我们可以利⽤⼀ 个storageClassName属性来标识，如下：</code></strong></p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat test-pvc.yaml </span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolumeClaim
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>pvc
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">storageClassName</span><span class="token punctuation">:</span> <span class="token string">&quot;managed-nfs-storage&quot;</span>			
+  <span class="token key atrule">accessModes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ReadWriteMany
+  <span class="token key atrule">resources</span><span class="token punctuation">:</span>
+    <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+      <span class="token key atrule">storage</span><span class="token punctuation">:</span> 1Mi 
+  
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f test-pvc.yaml</span>
+persistentvolumeclaim/test<span class="token punctuation">-</span>pvc created
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pvc</span>
+NAME       STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
+my<span class="token punctuation">-</span>pvc     Bound    my<span class="token punctuation">-</span>pvc                                     5Gi        RWO                                  82m
+test<span class="token punctuation">-</span>pvc   Bound    pvc<span class="token punctuation">-</span>24df2e95<span class="token punctuation">-</span>4eb9<span class="token punctuation">-</span>4872<span class="token punctuation">-</span>9aab<span class="token punctuation">-</span>e78a098054cd   1Mi        RWX            managed<span class="token punctuation">-</span>nfs<span class="token punctuation">-</span>storage   4s
+</code></pre></div><ul><li><strong>第⼆种⽅法：</strong></li></ul> <p><code>我们可以设置这个 course-nfs-storage 的 StorageClass 为 Kubernetes 的默认存储后端，我们可以⽤ kubectl patch 命令来更新：</code></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl patch storageclass managed-nfs-storage -p '{&quot;metadata&quot;: {&quot;annotations&quot;:{&quot;storageclass.kubernetes.io/is-default-class&quot;:&quot;true&quot;}}}'</span>
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get sc </span>
+NAME                            PROVISIONER                                   RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+managed-nfs-storage <span class="token punctuation">(</span>default<span class="token punctuation">)</span>   k8s-sigs.io/nfs-subdir-external-provisioner   Delete          Immediate           <span class="token boolean">false</span>                  58m
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pv</span>
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS          REASON   AGE
+my-pvc                                     5Gi        RWO            Recycle          Bound    default/my-pvc                                    112m
+pvc-24df2e95-4eb9-4872-9aab-e78a098054cd   1Mi        RWX            Delete           Bound    default/test-pvc   managed-nfs-storage            30m
+</code></pre></div><blockquote><p>测试动态供应</p></blockquote> <ul><li><p><strong>还是继续用nginx测试pvc动态供应</strong></p></li> <li><p><strong>末尾指定claimName的pvc是test-pvc</strong></p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat pod.yaml  </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>pod 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx 
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>pvc
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /usr/share/nginx/html 
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nfs<span class="token punctuation">-</span>pvc
+      <span class="token key atrule">persistentVolumeClaim</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">claimName</span><span class="token punctuation">:</span> test<span class="token punctuation">-</span>pvc
+        
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f pod.yaml  </span>
+pod/my<span class="token punctuation">-</span>pod created
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pods  -o wide </span>
+NAME                                      READY   STATUS    RESTARTS   AGE   IP               NODE   NOMINATED NODE   READINESS GATES
+my<span class="token punctuation">-</span>pod                                    1/1     Running   0          52s   10.244.167.142   node   &lt;none<span class="token punctuation">&gt;</span>           &lt;none<span class="token punctuation">&gt;</span>
+nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner<span class="token punctuation">-</span>75549d8b58<span class="token punctuation">-</span>vldpm   1/1     Running   0          63m   10.244.167.141   node   &lt;none<span class="token punctuation">&gt;</span>           &lt;none<span class="token punctuation">&gt;</span>
+</code></pre></div><ul><li><p><strong>在nfs的服务端验证动态供应是否生效</strong></p></li> <li><p><strong>创建一个index.html测试</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@node ~<span class="token punctuation">]</span><span class="token comment"># cd /nfs/kubernetes/</span>
+<span class="token punctuation">[</span>root@node kubernetes<span class="token punctuation">]</span><span class="token comment"># ls </span>
+default-test-pvc-pvc-24df2e95-4eb9-4872-9aab-e78a098054cd
+<span class="token punctuation">[</span>root@node kubernetes<span class="token punctuation">]</span><span class="token comment"># cd default-test-pvc-pvc-24df2e95-4eb9-4872-9aab-e78a098054cd/</span>
+<span class="token punctuation">[</span>root@node default-test-pvc-pvc-24df2e95-4eb9-4872-9aab-e78a098054cd<span class="token punctuation">]</span><span class="token comment"># echo 6666 &gt; index.html </span>
+</code></pre></div><ul><li><strong>回到master节点再次curl查看pod是否成功访问index.html</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pods  -o wide </span>
+NAME                                      READY   STATUS    RESTARTS   AGE   IP               NODE   NOMINATED NODE   READINESS GATES
+my-pod                                    <span class="token number">1</span>/1     Running   <span class="token number">0</span>          96s   <span class="token number">10.244</span>.167.142   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+nfs-client-provisioner-75549d8b58-vldpm   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          64m   <span class="token number">10.244</span>.167.141   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># curl 10.244.167.142</span>
+<span class="token number">6666</span>
+</code></pre></div><h2 id="有状态应用部署-statefulset控制器"><a href="#有状态应用部署-statefulset控制器" class="header-anchor">#</a> 有状态应用部署：StatefulSet控制器</h2> <ul><li><strong>无状态与有状态：</strong> <ul><li><code>Deployment控制器设计原则：管理的所有Pod一模一样，提供同一个服务，也不考虑在哪台Node运 行，可随意扩容和缩容。这种应用称为“无状态”，例如Web服务</code></li> <li><code>在实际的场景中，这并不能满足所有应用，尤其是分布式应用，会部署多个实例，这些实例之间往往有 依赖关系，例如主从关系、主备关系，这种应用称为“有状态”，例如MySQL主从、Etcd集群</code></li></ul></li></ul> <h2 id="statefulset"><a href="#statefulset" class="header-anchor">#</a> StatefulSet：</h2> <blockquote><ul><li><code>StatefulSet</code> 是用来管理有状态应用的工作负载 API 对象。</li> <li><code>StatefulSet</code> 用来管理 Deployment 和扩展一组 Pod，并且能为这些 Pod 提供<strong>序号和唯一性保证</strong>。</li> <li>和 Deployment 相同的是，StatefulSet 管理了基于相同容器定义的一组 Pod。但和 Deployment 不同的是，StatefulSet 为它们的每个 Pod 维护了一个固定的 ID。这些 Pod 是基于相同的声明来创建的，但是不能相互替换：无论怎么调度，每个 Pod 都有一个永久不变的 ID。</li></ul></blockquote> <p><strong>部署有状态应用</strong></p> <ul><li><p>解决Pod独立生命周期，保持Pod启动顺序和唯一性</p> <ul><li>稳定，唯一的网络标识符，持久存储</li> <li>有序，优雅的部署和扩展、删除和终止</li> <li>有序，自动的滚动更新</li> <li>应用场景：分布式应用、数据库集群</li> <li>删除或者收缩 StatefulSet 并不会删除它关联的存储卷。这样做是为了保证数据安全，它通常比自动清除 StatefulSet 所有相关的资源更有价值。</li> <li>StatefulSet 当前需要 headless 服务 来负责 Pod 的网络标识。您需要负责创建此服务。</li></ul></li> <li><p><strong>StatefulSet将应用状态抽象成了两种情况：</strong></p> <ul><li><code>拓扑状态</code>：应用实例必须按照某种顺序启动。新创建的Pod必须和原来Pod的网络标识一样</li> <li><code>存储状态</code>：应用的多个实例分别绑定了不同存储数据。</li></ul></li></ul> <blockquote><p><strong>StatefulSet的使用</strong></p></blockquote> <ul><li><p><code>StatefulSet通过Headless Service维持Pod的拓扑状态</code></p></li> <li><p>首先创建无头服务Headless service</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># cat service.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> web 
+  <span class="token key atrule">clusterIP</span><span class="token punctuation">:</span> None
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx
+    
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f service.yaml </span>
+service/nginx created  
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl get svc</span>
+NAME         TYPE        CLUSTER<span class="token punctuation">-</span>IP   EXTERNAL<span class="token punctuation">-</span>IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    &lt;none<span class="token punctuation">&gt;</span>        443/TCP   11h
+nginx        ClusterIP   None         &lt;none<span class="token punctuation">&gt;</span>        80/TCP    73s
+</code></pre></div><ul><li><strong>创建使用StatefulSet控制器的pod</strong></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl create deployment web --image=nginx --port=80 --dry-run -o yaml &gt; statefulset.yaml </span>
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># cat statefulset.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> StatefulSet    <span class="token comment">#修改个类型</span>
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> web
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">serviceName</span><span class="token punctuation">:</span> <span class="token string">&quot;nginx&quot;</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx 
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx 
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> web 
+          
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f statefulset.yaml </span>
+statefulset.apps/web created
+
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl get pods </span>
+NAME                                      READY   STATUS    RESTARTS   AGE
+nfs<span class="token punctuation">-</span>client<span class="token punctuation">-</span>provisioner<span class="token punctuation">-</span>75549d8b58<span class="token punctuation">-</span>vldpm   1/1     Running   0          109m
+web<span class="token punctuation">-</span>0                                     1/1     Running   0          72s			<span class="token comment">#有序</span>
+web<span class="token punctuation">-</span>1                                     1/1     Running   0          55s
+</code></pre></div><ul><li><strong>可以看出创建了两个名为<code>web-0</code>和<code>web-1</code>的pod，service也会由两个endpoint：</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl describe service nginx </span>
+Name:              nginx
+Namespace:         default
+Labels:            <span class="token assign-left variable">app</span><span class="token operator">=</span>nginx
+Annotations:       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Selector:          <span class="token assign-left variable">app</span><span class="token operator">=</span>nginx
+Type:              ClusterIP
+IP Families:       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+IP:                None
+IPs:               None
+Port:              web  <span class="token number">80</span>/TCP
+TargetPort:        <span class="token number">80</span>/TCP
+Endpoints:         <span class="token number">10.244</span>.167.145:80,10.244.167.146:80
+Session Affinity:  None
+Events:            <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre></div><ul><li><p><strong>创建时是先创建web-0再创建web-1，而删除的时候是先删除web-1，再删除web-0.</strong></p></li> <li><p><strong>现在可以直接访问服务</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl get pods -o wide </span>
+NAME                                      READY   STATUS    RESTARTS   AGE     IP               NODE   NOMINATED NODE   READINESS GATES
+my-pod                                    <span class="token number">1</span>/1     Running   <span class="token number">0</span>          49m     <span class="token number">10.244</span>.167.142   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+nfs-client-provisioner-75549d8b58-vldpm   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          112m    <span class="token number">10.244</span>.167.141   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+web-0                                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          4m15s   <span class="token number">10.244</span>.167.145   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+web-1                                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          3m58s   <span class="token number">10.244</span>.167.146   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># curl 10.244.167.145</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>title<span class="token operator">&gt;</span>Welcome to nginx<span class="token operator">!</span><span class="token operator">&lt;</span>/title<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>style<span class="token operator">&gt;</span>
+html <span class="token punctuation">{</span> color-scheme: light dark<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+body <span class="token punctuation">{</span> width: 35em<span class="token punctuation">;</span> margin: <span class="token number">0</span> auto<span class="token punctuation">;</span>
+font-family: Tahoma, Verdana, Arial, sans-serif<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span>/style<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>/head<span class="token operator">&gt;</span>
+</code></pre></div><ul><li><p><strong><code>PV和PVC的设计，使得StatefulSet对存储状态的管理成为了可能，现在为以上这些pod添加存储</code></strong></p></li> <li><p><strong>StatefulSet的存储卷使用VolumeClaimTemplate创建，称为卷申请模板，当StatefulSet使用 VolumeClaimTemplate创建一个PersistentVolume时，同样也会为每个Pod分配并创建一个编号的PVC。</strong></p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># cat statefulset.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> StatefulSet 
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> web
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">serviceName</span><span class="token punctuation">:</span> <span class="token string">&quot;nginx&quot;</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx 
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> nginx 
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> web 
+        <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span> 
+          <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> www
+            <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /usr/share/nginx/html
+
+  <span class="token key atrule">volumeClaimTemplates</span><span class="token punctuation">:</span> 										<span class="token comment">#专门的申请模板 只对于Statefulset</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">metadata</span><span class="token punctuation">:</span> 												<span class="token comment">#为Pod申请一个独立的PV</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> www
+      <span class="token key atrule">spec</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">storageClassName</span><span class="token punctuation">:</span> managed<span class="token punctuation">-</span>nfs<span class="token punctuation">-</span>storage
+        <span class="token key atrule">accessModes</span><span class="token punctuation">:</span> 
+          <span class="token punctuation">-</span> ReadWriteOnce 
+        <span class="token key atrule">resources</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">requests</span><span class="token punctuation">:</span>
+            <span class="token key atrule">storage</span><span class="token punctuation">:</span> 100Mi 
+            
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl  apply -f statefulset.yaml </span>
+statefulset.apps/web created
+</code></pre></div><ul><li><p><strong><code>查看pods的状态和pv以及pvc的状态</code></strong></p></li> <li><p><strong><code>StatefulSet还会为每一个Pod分配并创建一个同样编号的PVC。</code></strong></p></li> <li><p><strong>这样，kubernetes就可以通过Persistent Volume机制为这个PVC绑定对应的PV，从而保证每一个Pod都拥有一个独立的Volume：</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl get pods </span>
+NAME                                      READY   STATUS    RESTARTS   AGE
+my-pod                                    <span class="token number">1</span>/1     Running   <span class="token number">0</span>          62m
+nfs-client-provisioner-75549d8b58-vldpm   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          125m
+web-0                                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          42s
+web-1                                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          23s
+
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment"># kubectl get pvc</span>
+NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
+my-pvc      Bound    my-pvc                                     5Gi        RWO                                  3h3m
+test-pvc    Bound    pvc-24df2e95-4eb9-4872-9aab-e78a098054cd   1Mi        RWX            managed-nfs-storage   101m
+www-web-0   Bound    pvc-66727b03-b4f4-47b1-a681-9a9c406ee732   100Mi      RWO            managed-nfs-storage   55s
+www-web-1   Bound    pvc-d9df0901-79be-47d2-b8a1-4552213e09d3   100Mi      RWO            managed-nfs-storage   36s
+
+<span class="token punctuation">[</span>root@master statefulset<span class="token punctuation">]</span><span class="token comment">#  kubectl get pv </span>
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM               STORAGECLASS          REASON   AGE
+my-pvc                                     5Gi        RWO            Recycle          Bound    default/my-pvc                                     3h5m
+pvc-24df2e95-4eb9-4872-9aab-e78a098054cd   1Mi        RWX            Delete           Bound    default/test-pvc    managed-nfs-storage            103m
+pvc-66727b03-b4f4-47b1-a681-9a9c406ee732   100Mi      RWO            Delete           Bound    default/www-web-0   managed-nfs-storage            2m46s
+pvc-d9df0901-79be-47d2-b8a1-4552213e09d3   100Mi      RWO            Delete           Bound    default/www-web-1   managed-nfs-storage            2m27s
+</code></pre></div><ul><li><p><strong>在nfs的服务端写入index.html进行访问测试</strong></p></li> <li><p><strong>我已经将nfs的服务端挂载在master节点上</strong></p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cd /mnt/default-www-web-0-pvc-66727b03-b4f4-47b1-a681-9a9c406ee732/ </span>
+<span class="token punctuation">[</span>root@master default-www-web-0-pvc-66727b03-b4f4-47b1-a681-9a9c406ee732<span class="token punctuation">]</span><span class="token comment"># echo web1 &gt; index.html </span>
+<span class="token punctuation">[</span>root@master default-www-web-0-pvc-66727b03-b4f4-47b1-a681-9a9c406ee732<span class="token punctuation">]</span><span class="token comment"># cd ..</span>
+<span class="token punctuation">[</span>root@master default-www-web-1-pvc-d9df0901-79be-47d2-b8a1-4552213e09d3<span class="token punctuation">]</span><span class="token comment"># echo web2 &gt; index.html </span>
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl  get pods -o wide </span>
+NAME                                      READY   STATUS    RESTARTS   AGE     IP               NODE   NOMINATED NODE   READINESS GATES
+my-pod                                    <span class="token number">1</span>/1     Running   <span class="token number">0</span>          68m     <span class="token number">10.244</span>.167.142   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+nfs-client-provisioner-75549d8b58-vldpm   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          131m    <span class="token number">10.244</span>.167.141   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+web-0                                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          6m31s   <span class="token number">10.244</span>.167.147   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+web-1                                     <span class="token number">1</span>/1     Running   <span class="token number">0</span>          6m12s   <span class="token number">10.244</span>.167.148   <span class="token function">node</span>   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># curl  10.244.167.147</span>
+web1
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># curl  10.244.167.148</span>
+web2
+</code></pre></div><h2 id="应用程序配置文件存储-configmap"><a href="#应用程序配置文件存储-configmap" class="header-anchor">#</a> 应用程序配置文件存储：ConfigMap</h2> <ul><li><p>资源对象： ConfigMap</p> <ul><li>我们知道许多应⽤经常会有从配置⽂件、命令⾏参数或者环境变量中读取 ⼀些配置信息，这些配置信息我们肯定不会直接写死到应⽤程序中去的，⽐如你⼀个应⽤连接⼀ 个 redis 服务，下⼀次想更换⼀个了的，还得重新去修改代码，重新制作⼀个镜像，这肯定是不可取 的，<code>⽽ ConfigMap 就给我们提供了向容器中注⼊配置信息的能⼒，不仅可以⽤来保存单个属性，也可 以⽤来保存整个配置⽂件，⽐如我们可以⽤来配置⼀个 redis 服务的访问地址，也可以⽤来保存整 个 redis 的配置⽂件。</code></li> <li>ConfigMap 资源对象使⽤ key-value 形式的键值对来配置数据，这些数据可以在 Pod ⾥⾯使 ⽤， ConfigMap 和我们后⾯要讲到的 Secrets ⽐较类似，⼀个⽐较⼤的区别是 ConfigMap 可以⽐较⽅ 便的处理⼀些⾮敏感的数据，<code>⽐如密码之类的还是需要使⽤ Secrets 来进⾏管理。</code></li></ul></li> <li><p>可以使⽤ kubectl create configmap -h 来查看关于创建 ConfigMap 的帮助信息</p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>Examples:
+	<span class="token comment"># Create a new configmap named my-config based on folder bar</span>
+	kubectl create configmap my-config --from-file<span class="token operator">=</span>path/to/bar
+
+	<span class="token comment"># Create a new configmap named my-config with specified keys instead of file basenames on disk</span>
+	kubectl create configmap my-config --from-file<span class="token operator">=</span>key1<span class="token operator">=</span>/path/to/bar/file1.txt --from-file<span class="token operator">=</span>key2<span class="token operator">=</span>/path/to/bar/file2.txt
+
+	<span class="token comment"># Create a new configmap named my-config with key1=config1 and key2=config2ConfigMap</span>
+	kubectl create configmap my-config --from-literal<span class="token operator">=</span>key1<span class="token operator">=</span>config1 --from-literal<span class="token operator">=</span>key2<span class="token operator">=</span>config2
+</code></pre></div><ul><li><p><strong><code>创建含有变量的文件</code></strong></p></li> <li><p>我们可以看到可以从⼀个给定的⽬录来创建⼀个 ConfigMap 对象，⽐如我们有⼀个 testcm 的⽬录， 该⽬录下⾯包含⼀些配置⽂件， redis 和 mysql 的连接信息</p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># ls testcm/</span>
+mysql.conf  redis.conf
+
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># cat testcm/mysql.conf </span>
+<span class="token assign-left variable">host</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">3306</span>
+
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># cat testcm/redis.conf </span>
+<span class="token assign-left variable">host</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">6379</span>
+</code></pre></div><ul><li><p><strong><code>使⽤ from-file 关键字来创建包含这个⽬录下⾯所以配置⽂件的 ConfigMap</code></strong></p></li> <li><p>其中 from-file 参数指定在该⽬录下⾯的所有⽂件都会被⽤在 ConfigMap ⾥⾯创建⼀个键值对，键的 名字就是⽂件名，值就是⽂件的内容</p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl create configmap cm-demo1 --from-file=testcm</span>
+configmap/cm-demo1 created
+
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl get configmaps </span>
+NAME               DATA   AGE
+cm-demo1           <span class="token number">2</span>      6s
+kube-root-ca.crt   <span class="token number">1</span>      27s
+</code></pre></div><ul><li>使⽤ describe 命令查看详细信息</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl describe configmaps cm-demo1 </span>
+Name:         cm-demo1
+Namespace:    default
+Labels:       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations:  <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+
+Data
+<span class="token operator">==</span><span class="token operator">==</span>
+mysql.conf:
+----
+<span class="token assign-left variable">host</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">3306</span>
+
+redis.conf:
+----
+<span class="token assign-left variable">host</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">6379</span>
+
+Events:  <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre></div><ul><li>使用yaml的方式查看更详细的键值</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl get configmaps cm-demo1 -o yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">mysql.conf</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+    host=127.0.0.1
+    port=3306</span>
+  <span class="token key atrule">redis.conf</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+    host=127.0.0.1
+    port=6379</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token string">&quot;2021-11-06T05:52:14Z&quot;</span>
+  <span class="token key atrule">managedFields</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">fieldsType</span><span class="token punctuation">:</span> FieldsV1
+    <span class="token key atrule">fieldsV1</span><span class="token punctuation">:</span>
+      <span class="token key atrule">f:data</span><span class="token punctuation">:</span>
+        <span class="token key atrule">.</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token key atrule">f:mysql.conf</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token key atrule">f:redis.conf</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token key atrule">manager</span><span class="token punctuation">:</span> kubectl<span class="token punctuation">-</span>create
+    <span class="token key atrule">operation</span><span class="token punctuation">:</span> Update
+    <span class="token key atrule">time</span><span class="token punctuation">:</span> <span class="token string">&quot;2021-11-06T05:52:14Z&quot;</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo1
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+  <span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">&quot;10516&quot;</span>
+  <span class="token key atrule">uid</span><span class="token punctuation">:</span> 9a07b954<span class="token punctuation">-</span>c61a<span class="token punctuation">-</span>4b4d<span class="token punctuation">-</span>a0ec<span class="token punctuation">-</span>5214c3c317ee
+</code></pre></div><ul><li><p>除了通过⽂件⽬录进⾏创建，我们也可以使⽤指定的⽂件进⾏创建 ConfigMap</p></li> <li><p>我们创建⼀个 redis 的配置的⼀个单独 ConfigMap 对象:</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl create configmap cm-demo2 --from-file=testcm/redis.conf </span>
+configmap/cm<span class="token punctuation">-</span>demo2 created
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl get configmaps cm-demo2  -o yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis.conf</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+    host=127.0.0.1
+    port=6379</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token string">&quot;2021-11-06T05:55:37Z&quot;</span>
+  <span class="token key atrule">managedFields</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">fieldsType</span><span class="token punctuation">:</span> FieldsV1
+    <span class="token key atrule">fieldsV1</span><span class="token punctuation">:</span>
+      <span class="token key atrule">f:data</span><span class="token punctuation">:</span>
+        <span class="token key atrule">.</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token key atrule">f:redis.conf</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token key atrule">manager</span><span class="token punctuation">:</span> kubectl<span class="token punctuation">-</span>create
+    <span class="token key atrule">operation</span><span class="token punctuation">:</span> Update
+    <span class="token key atrule">time</span><span class="token punctuation">:</span> <span class="token string">&quot;2021-11-06T05:55:37Z&quot;</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo2
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+  <span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">&quot;10782&quot;</span>
+  <span class="token key atrule">uid</span><span class="token punctuation">:</span> 71c2a77a<span class="token punctuation">-</span>fb21<span class="token punctuation">-</span>44c3<span class="token punctuation">-</span>a293<span class="token punctuation">-</span>064e3d1a2826
+  
+
+注：
+我们可以看到⼀个关联 redis.conf ⽂件配置信息的 ConfigMap 对象创建成功了，另外值得注意的是 <span class="token punctuation">-</span><span class="token punctuation">-</span>from<span class="token punctuation">-</span>file 这个参数可以使⽤多次，⽐如我们这⾥使⽤两次分别指定 redis.conf 和 mysql.conf ⽂件，就和直接指定整个⽬录是⼀样的效果了。
+</code></pre></div><ul><li><p>我们还可以直接使⽤字符串进⾏创建，通过 --from-literal 参数传递配置信息</p></li> <li><p>同样的，这个参数可以使⽤多次</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl create configmap cm-demo3 --from-literal=db.host=localhost  --from-literal=db.port=3306</span>
+configmap/cm<span class="token punctuation">-</span>demo3 created
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl get configmaps cm-demo3 -o yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">db.host</span><span class="token punctuation">:</span> localhost
+  <span class="token key atrule">db.port</span><span class="token punctuation">:</span> <span class="token string">&quot;3306&quot;</span>
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token string">&quot;2021-11-06T05:58:06Z&quot;</span>
+  <span class="token key atrule">managedFields</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">fieldsType</span><span class="token punctuation">:</span> FieldsV1
+    <span class="token key atrule">fieldsV1</span><span class="token punctuation">:</span>
+      <span class="token key atrule">f:data</span><span class="token punctuation">:</span>
+        <span class="token key atrule">.</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token key atrule">f:db.host</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token key atrule">f:db.port</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token key atrule">manager</span><span class="token punctuation">:</span> kubectl<span class="token punctuation">-</span>create
+    <span class="token key atrule">operation</span><span class="token punctuation">:</span> Update
+    <span class="token key atrule">time</span><span class="token punctuation">:</span> <span class="token string">&quot;2021-11-06T05:58:06Z&quot;</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo3
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+  <span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">&quot;10979&quot;</span>
+  <span class="token key atrule">uid</span><span class="token punctuation">:</span> 36bf5bbb<span class="token punctuation">-</span>b43a<span class="token punctuation">-</span>402d<span class="token punctuation">-</span>92c2<span class="token punctuation">-</span>af5f48ae0172
+</code></pre></div><blockquote><h2 id="configmap的使用"><a href="#configmap的使用" class="header-anchor">#</a> configMap的使用</h2></blockquote> <ul><li><p>ConfigMap 这些配置数据可以 通过很多种⽅式在 Pod ⾥使⽤，主要有以下⼏种⽅式：</p> <ul><li><code>设置环境变量的值</code></li> <li><code>在容器⾥设置命令⾏参数</code></li> <li><code>在数据卷⾥⾯创建config⽂件</code></li></ul></li> <li><p>使⽤ ConfigMap 来填充我们的环境变量：</p></li> <li><p>使用busybox镜像打印我们所注入的变量</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># cat pod.yaml  </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> testcm1<span class="token punctuation">-</span>pod 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> testcm1 
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/bin/sh&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;env&quot;</span><span class="token punctuation">]</span> 
+    <span class="token key atrule">env</span><span class="token punctuation">:</span> 								<span class="token comment">#第一种注入变量的方式</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> DB_HOST					
+        <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span> 						<span class="token comment">#变量的来源</span>
+          <span class="token key atrule">configMapKeyRef</span><span class="token punctuation">:</span> 				<span class="token comment">#从configMap来</span>
+            <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo3  			<span class="token comment">#从configMap的cm-demo3来</span>
+            <span class="token key atrule">key</span><span class="token punctuation">:</span> db.host 
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> DB_PORT 
+        <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">configMapKeyRef</span><span class="token punctuation">:</span> 
+            <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo3 
+            <span class="token key atrule">key</span><span class="token punctuation">:</span> db.port
+    <span class="token key atrule">envFrom</span><span class="token punctuation">:</span> 							<span class="token comment">#第二种注入变量的方式</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">configMapRef</span><span class="token punctuation">:</span>					<span class="token comment">#来源于configMap</span>
+         <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo1 				<span class="token comment">#configMap的cm-demo1</span>
+        
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f pod.yaml </span>
+pod/testcm1<span class="token punctuation">-</span>pod created
+
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl get pods </span>
+NAME          READY   STATUS      RESTARTS   AGE
+testcm1<span class="token punctuation">-</span>pod   0/1     Completed   0          3m21s
+</code></pre></div><ul><li>查看日志看busybox是否打印出来变量</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl logs testcm1-pod </span>
+<span class="token assign-left variable">KUBERNETES_SERVICE_PORT</span><span class="token operator">=</span><span class="token number">443</span>
+<span class="token assign-left variable">KUBERNETES_PORT</span><span class="token operator">=</span>tcp://10.96.0.1:443
+<span class="token assign-left variable"><span class="token environment constant">HOSTNAME</span></span><span class="token operator">=</span>testcm1-pod
+<span class="token assign-left variable">DB_PORT</span><span class="token operator">=</span><span class="token number">3306</span>
+<span class="token assign-left variable"><span class="token environment constant">SHLVL</span></span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable"><span class="token environment constant">HOME</span></span><span class="token operator">=</span>/root
+<span class="token assign-left variable">mysql.conf</span><span class="token operator">=</span>host<span class="token operator">=</span><span class="token number">127.0</span>.0.1
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">3306</span>
+
+<span class="token assign-left variable">redis.conf</span><span class="token operator">=</span>host<span class="token operator">=</span><span class="token number">127.0</span>.0.1
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">6379</span>
+
+<span class="token assign-left variable">KUBERNETES_PORT_443_TCP_ADDR</span><span class="token operator">=</span><span class="token number">10.96</span>.0.1
+<span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+<span class="token assign-left variable">KUBERNETES_PORT_443_TCP_PORT</span><span class="token operator">=</span><span class="token number">443</span>
+<span class="token assign-left variable">KUBERNETES_PORT_443_TCP_PROTO</span><span class="token operator">=</span>tcp
+<span class="token assign-left variable">KUBERNETES_SERVICE_PORT_HTTPS</span><span class="token operator">=</span><span class="token number">443</span>
+<span class="token assign-left variable">KUBERNETES_PORT_443_TCP</span><span class="token operator">=</span>tcp://10.96.0.1:443
+<span class="token assign-left variable">KUBERNETES_SERVICE_HOST</span><span class="token operator">=</span><span class="token number">10.96</span>.0.1
+<span class="token assign-left variable"><span class="token environment constant">PWD</span></span><span class="token operator">=</span>/
+<span class="token assign-left variable">DB_HOST</span><span class="token operator">=</span>localhost
+
+注：
+可以看到 DB_HOST 和 DB_PORT 都已经正常输出了，另外的环境变量是因为我们这⾥直接把 cm-demo1 给注⼊进来了，所以把他们的整个键值给输出出来了，这也是符合预期的。
+</code></pre></div><ul><li>使⽤ ConfigMap 来设置命令⾏参数， ConfigMap 也可以被⽤来设置容器中的命令或者参数值</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># cat pod.yaml  </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> testcm2<span class="token punctuation">-</span>pod 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> testcm2
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/bin/sh&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;echo $(DB_HOST) $(DB_PORT)&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">env</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> DB_HOST
+        <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">configMapKeyRef</span><span class="token punctuation">:</span> 
+            <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo3  
+            <span class="token key atrule">key</span><span class="token punctuation">:</span> db.host 
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> DB_PORT 
+        <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">configMapKeyRef</span><span class="token punctuation">:</span> 
+            <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo3 
+            <span class="token key atrule">key</span><span class="token punctuation">:</span> db.port
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f pod.yaml </span>
+pod/testcm2<span class="token punctuation">-</span>pod created
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl logs testcm2-pod </span>
+localhost <span class="token number">3306</span>
+</code></pre></div><ul><li>另外⼀种是⾮常常⻅的使⽤ ConfigMap 的⽅式：
+<ul><li>通过数据卷使⽤，在数据卷⾥⾯使⽤ ConfigMap</li> <li>就是将⽂件填⼊数据卷，在这个⽂件中，键就是⽂件名，键值就是⽂件内容：</li></ul></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># cat pod.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> testcm3<span class="token punctuation">-</span>pod 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> testcm3
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/bin/sh&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;cat /etc/config/redis.conf&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span> 
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> config<span class="token punctuation">-</span>volume 
+        <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /etc/config 
+
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> config<span class="token punctuation">-</span>volume 
+      <span class="token key atrule">configMap</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> cm<span class="token punctuation">-</span>demo2
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f pod.yaml </span>
+pod/testcm3<span class="token punctuation">-</span>pod created
+<span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl get pods </span>
+NAME          READY   STATUS      RESTARTS   AGE
+testcm3<span class="token punctuation">-</span>pod   0/1     Completed   0          5s
+
+注：
+另外需要注意的是，当 ConfigMap 以数据卷的形式挂载进 Pod 的时，这时更新 ConfigMap （或删掉重建 ConfigMap ）， Pod 内挂载的配置信息会热更新。这时可以增加⼀些监测配置⽂件变更的脚本，然
+后 reload 对应服务。
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master work<span class="token punctuation">]</span><span class="token comment"># kubectl  logs testcm3-pod </span>
+<span class="token assign-left variable">host</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1
+<span class="token assign-left variable">port</span><span class="token operator">=</span><span class="token number">6379</span>
+</code></pre></div><h2 id="敏感数据存储-secret"><a href="#敏感数据存储-secret" class="header-anchor">#</a> 敏感数据存储：Secret</h2> <ul><li><p>资源对象： Secret</p> <ul><li>如果涉及到⼀些安全相关的 数据的话⽤ ConfigMap 就⾮常不妥了，因为 ConfigMap 是名为存储的，我们说这个时候我们就需要⽤ 到另外⼀个资源对象了： <code>Secret ， Secret ⽤来保存敏感信息，例如密码、OAuth 令牌和 ssh key等 等，将这些信息放在 Secret 中⽐放在 Pod 的定义中或者 docker 镜像中来说更加安全和灵活。</code></li></ul></li> <li><p><strong>Secret 有三种类型：</strong></p></li> <li><p>kubectl create secret 支持三种数据类型：</p> <ul><li>generic：从文件、目录或者字符串创建，例如存储用户名密码*</li> <li>docker-registry：存储镜像仓库认证信息*</li> <li>tls：存储证书，例如HTTPS证书
+<ul><li><code>Opaque</code>： base64 编码格式的 Secret，⽤来存储密码、密钥等；但数据也可以通过base64 – decode解码得到原始数据，所有加密性很弱。</li> <li><code>kubernetes.io/dockerconfigjson</code>： ⽤来存储私有docker registry的认证信息。</li> <li><code>kubernetes.io/service-account-token</code>： ⽤于被 serviceaccount 引⽤，serviceaccout 创建时 Kubernetes会默认创建对应的secret。Pod如果使⽤了serviceaccount，对应的secret会⾃动挂载到Pod⽬录 /run/secrets/kubernetes.io/serviceaccount 中。</li></ul></li></ul></li></ul> <blockquote><p><strong>Opaque Secret</strong>
+Opaque 类型的数据是⼀个 map 类型，要求value是 base64 编码格式，⽐如我们来创建⼀个⽤户名为 admin，密码为 admin321 的 Secret 对象，⾸先我们先把这⽤户名和密码做 base64 编码</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># echo  -n &quot;admin&quot; | base64</span>
+<span class="token assign-left variable">YWRtaW4</span><span class="token operator">=</span>
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># echo  -n &quot;admin123&quot; | base64</span>
+<span class="token assign-left variable">YWRtaW4xMjM</span><span class="token operator">=</span>
+</code></pre></div><blockquote><p><strong>Secret的generic使用</strong></p></blockquote> <ul><li>使用快速部署yaml创建一个secret</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl create secret generic mysecret --type Opaque --from-literal=username=YWRtaW4=  --from-literal=password=YWRtaW4xMjM= --dry-run -o yaml &gt; secret.yaml </span>
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat secret.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">data</span><span class="token punctuation">:</span>
+  <span class="token key atrule">password</span><span class="token punctuation">:</span> YWRtaW4xMjM=
+  <span class="token key atrule">username</span><span class="token punctuation">:</span> YWRtaW4=
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Secret
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token null important">null</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> mysecret
+<span class="token key atrule">type</span><span class="token punctuation">:</span> Opaque
+</code></pre></div><ul><li>利⽤ get secret 命令查看：</li> <li>其中 default-token-cty7pdefault-token-n9w2d 为创建集群时默认创建的 secret，被 serviceacount/default 引⽤。</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f secret.yaml </span>
+secret/mysecret created
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get secrets </span>
+NAME                  TYPE                                  DATA   AGE
+default-token-rmwg8   kubernetes.io/service-account-token   <span class="token number">3</span>      170m
+mysecret              Opaque                                <span class="token number">2</span>      11s
+</code></pre></div><ul><li>使⽤ describe 命令，查看详情：</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl describe secrets mysecret  </span>
+Name:         mysecret
+Namespace:    default
+Labels:       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations:  <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+
+Type:  Opaque
+
+Data
+<span class="token operator">==</span><span class="token operator">==</span>
+password:  <span class="token number">12</span> bytes
+username:  <span class="token number">8</span> bytes
+</code></pre></div><ul><li><p>创建好 Secret 对象后，有两种⽅式来使⽤它：</p> <ul><li><strong><code>以环境变量的形式</code></strong></li> <li><strong><code>以Volume的形式挂载</code></strong></li></ul></li> <li><p><strong><code>环境变量</code></strong></p></li> <li><p>⾸先我们来测试下环境变量的⽅式，同样的，我们来使⽤⼀个简单的 busybox 镜像来测试下:(secret1- pod.yaml)</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat secret1.yaml </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> secret1<span class="token punctuation">-</span>pod 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> secret1
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/bin/sh&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;env&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">env</span><span class="token punctuation">:</span> 					<span class="token comment">#注入变量</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> USERNAME 		
+      <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span> 			<span class="token comment">#变量的来源</span>
+        <span class="token key atrule">secretKeyRef</span><span class="token punctuation">:</span> 		<span class="token comment">#来源于secret的mysecret</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> mysecret 	<span class="token comment">#名称是mysecret</span>
+          <span class="token key atrule">key</span><span class="token punctuation">:</span> username		<span class="token comment">#变量是username=admin  输出admin</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> PASSWORD  
+      <span class="token key atrule">valueFrom</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">secretKeyRef</span><span class="token punctuation">:</span> 
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> mysecret 
+          <span class="token key atrule">key</span><span class="token punctuation">:</span> password 
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f secret1.yaml  </span>
+pod/secret1-pod created
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get pods </span>
+NAME          READY   STATUS      RESTARTS   AGE
+secret1-pod   <span class="token number">0</span>/1     Completed   <span class="token number">0</span>          18s
+</code></pre></div><ul><li>查看日志状态</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl logs secret1-pod </span>
+<span class="token assign-left variable">USERNAME</span><span class="token operator">=</span>admin
+···
+<span class="token assign-left variable">PASSWORD</span><span class="token operator">=</span>admin123
+</code></pre></div><ul><li><p><strong><code>Volume 挂载</code></strong></p></li> <li><p>同样的我们⽤⼀个 Pod 来验证下 Volume 挂载，创建⼀个 Pod ⽂件：(secret2-pod.yaml)</p></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># cat secret2.yaml  </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> secret1<span class="token punctuation">-</span>pod 
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> secret1
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/bin/sh&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;ls /etc/secrets&quot;</span><span class="token punctuation">]</span>
+    <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span> 
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> secrets
+      <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /etc/secrets
+  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> secrets 
+      <span class="token key atrule">secret</span><span class="token punctuation">:</span> 
+        <span class="token key atrule">secretName</span><span class="token punctuation">:</span> mysecret
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl apply -f secret2.yaml  </span>
+pod/secret1<span class="token punctuation">-</span>pod created
+</code></pre></div><ul><li>查看日志</li></ul> <div class="language- extra-class"><pre class="language-text"><code>[root@master ~]# kubectl logs secret1-pod 
+password
+username
+</code></pre></div><blockquote><h2 id="secret的docker-registry使用"><a href="#secret的docker-registry使用" class="header-anchor">#</a> Secret的docker-registry使用</h2></blockquote> <ul><li><p><code>kubernetes.io/dockerconfigjson</code></p></li> <li><p>除了上⾯的 Opaque 这种类型外，我们还可以来创建⽤户 docker registry 认证的 Secret ，直接使 ⽤ kubectl create 命令创建即可</p></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl create secret docker-registry myregistry  --docker-server=DOCKER_SERVER --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL</span>
+secret/myregistry created
+
+<span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get secret </span>
+NAME                  TYPE                                  DATA   AGE
+default-token-4wt8g   kubernetes.io/service-account-token   <span class="token number">3</span>      12h
+myregistry            kubernetes.io/dockerconfigjson        <span class="token number">1</span>      7s
+
+
+注：
+注意看上⾯的 TYPE 类型， myregistry 是不是对应的 kubernetes.io/dockerconfigjson 
+</code></pre></div><ul><li>查看yaml的详细</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># kubectl get secrets myregistry -o yaml </span>
+apiVersion: v1
+data:
+  .dockerconfigjson: <span class="token assign-left variable">eyJhdXRocyI6eyJET0NLRVJfU0VSVkVSIjp7InVzZXJuYW1lIjoiRE9DS0VSX1VTRVIiLCJwYXNzd29yZCI6IkRPQ0tFUl9QQVNTV09SRCIsImVtYWlsIjoiRE9DS0VSX0VNQUlMIiwiYXV0aCI6IlJFOURTMFZTWDFWVFJWSTZSRTlEUzBWU1gxQkJVMU5YVDFKRSJ9fX0</span><span class="token operator">=</span>
+kind: Secret
+metadata:
+  creationTimestamp: <span class="token string">&quot;2021-11-07T10:24:34Z&quot;</span>
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        .: <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        f:.dockerconfigjson: <span class="token punctuation">{</span><span class="token punctuation">}</span>
+      f:type: <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    manager: kubectl
+    operation: Update
+    time: <span class="token string">&quot;2021-11-07T10:24:34Z&quot;</span>
+  name: myregistry
+  namespace: default
+  resourceVersion: <span class="token string">&quot;104658&quot;</span>
+  selfLink: /api/v1/namespaces/default/secrets/myregistry
+  uid: f57dffb2-4c1a-41e7-9d9f-a5316b343771
+type: kubernetes.io/dockerconfigjson
+</code></pre></div><ul><li>可以把上⾯的 data.dockerconfigjson 下⾯的数据做⼀个 base64 解码，看看⾥⾯的数据是怎样的</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># echo eyJhdXRocyI6eyJET0NLRVJfU0VSVkVSIjp7InVzZXJuYW1lIjoiRE9DS0VSX1VTRVIiLCJwYXNzd29yZCI6IkRPQ0tFUl9QQVNTV09SRCIsImVtYWlsIjoiRE9DS0VSX0VNQUlMIiwiYXV0aCI6IlJFOURTMFZTWDFWVFJWSTZSRTlEUzBWU1gxQkJVMU5YVDFKRSJ9fX0= | base64 -d</span>
+<span class="token punctuation">{</span><span class="token string">&quot;auths&quot;</span>:<span class="token punctuation">{</span><span class="token string">&quot;DOCKER_SERVER&quot;</span>:<span class="token punctuation">{</span><span class="token string">&quot;username&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;DOCKER_USER&quot;</span>,<span class="token string">&quot;password&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;DOCKER_PASSWORD&quot;</span>,<span class="token string">&quot;email&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;DOCKER_EMAIL&quot;</span>,<span class="token string">&quot;auth&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;RE9DS0VSX1VTRVI6RE9DS0VSX1BBU1NXT1JE&quot;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre></div><ul><li>如果我们需要拉取私有仓库中的 docker 镜像的话就需要使⽤到上⾯的 myregistry 这个 Secret</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">[</span>root@master ~<span class="token punctuation">]</span><span class="token comment"># vim pod.yaml  </span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+    <span class="token key atrule">run</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> 172.25.253.19/library/nginx
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+  <span class="token key atrule">imagePullSecrets</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> myregistrykey
+</code></pre></div><h2 id="secret-与-configmap-对比"><a href="#secret-与-configmap-对比" class="header-anchor">#</a> Secret 与 ConfigMap 对⽐</h2> <blockquote><p>最后我们来对⽐下 Secret 和 ConfigMap 这两种资源对象的异同点：</p></blockquote> <ul><li><p>相同点：</p> <ul><li>key/value的形式</li> <li>属于某个特定的namespace</li> <li>可以导出到环境变量</li> <li>可以通过⽬录/⽂件形式挂载</li> <li>通过 volume 挂载的配置信息均可热更新</li></ul></li> <li><p>不同点：</p> <ul><li>Secret 可以被 ServerAccount 关联</li> <li>Secret 可以存储 docker register 的鉴权信息，⽤在 ImagePullSecret 参数中，⽤于拉取私有仓库的镜像</li> <li>Secret ⽀持 Base64 加密</li> <li>Secret 分为 kubernetes.io/service-account-token、kubernetes.io/dockerconfigjson、Opaque 三种类型，⽽ Configmap 不区分类型</li></ul></li></ul></div></div> <!----> <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2023/11/28, 22:03:59</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/CodeVault/pages/c7deaf/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">Kubernetes网络</div></a> <a href="/CodeVault/pages/de082c/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">Kubernetes安全</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/CodeVault/pages/c7deaf/" class="prev">Kubernetes网络</a></span> <span class="next"><a href="/CodeVault/pages/de082c/">Kubernetes安全</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/CodeVault/archives" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/CodeVault/pages/c936ca/"><div>
+            学习文档
+            <!----></div></a> <span class="date">11-28</span></dt></dl><dl><dd>02</dd> <dt><a href="/CodeVault/pages/53f082/"><div>
+            如何成为FISCO社区的MVP 总结篇
+            <!----></div></a> <span class="date">11-28</span></dt></dl><dl><dd>03</dd> <dt><a href="/CodeVault/pages/3d3086/"><div>
+            一文搞懂Truffle测试
+            <!----></div></a> <span class="date">11-28</span></dt></dl> <dl><dd></dd> <dt><a href="/CodeVault/archives" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:894072666@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/xugaoyi" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2023-2023
+    <span>YYzop & Hior | MIT License</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"></div></div>
+    <script src="/CodeVault/assets/js/app.ef278985.js" defer></script><script src="/CodeVault/assets/js/2.f96441c8.js" defer></script><script src="/CodeVault/assets/js/148.24a7cd95.js" defer></script>
+  </body>
+</html>
